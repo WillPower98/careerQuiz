@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Dept of State</title>
+      <link rel="stylesheet" type="text/css" href="styles.css">
+   </head>
+   <body>
+      <body>
+         <div id="main">
+            <!-- open main div -->
+            <div id="header">
+               <!-- open header div -->
+               <h1>JavaScript Quiz</h1>
+            </div>
+            <!-- close header div -->
+            <div class="slideshow-container">
+            <form id="form1">
+
+               <!-- question 1 -->
+               <div class="mySlides fade">
+                  <div class="numbertext">1 / 5</div>
+                  <img src="res/img_nature_wide.jpg" style="width:100%">
+                  <h2>Question 1</h2>
+                  <label for="var_string"><input type="radio" name="variable" value="0" id="var_string" />Option A</label>
+                  <label for="var_join"><input type="radio" name="variable" value="0" id="var_join" />Option B</label>
+                  <label for="var_info"><input type="radio" name="variable" value="25" id="var_info" />Option C</label>
+                  <label for="var_condition"><input type="radio" name="variable" value="0" id="var_condition"/>Option D</label>
+               </div>
+
+               <!-- question 2 -->
+               <div class="mySlides fade">
+                  <div class="numbertext">2 / 5</div>
+                  <img src="res/img_snow_wide.jpg" style="width:100%">
+                  <h2>Question 2</h2>
+                  <label for="sub_string"><input type="radio" name="sub" value="25" id="sub_string"/>Option A</label>
+                  <label for="sub_join"><input type="radio" name="sub" value="0" id="sub_join"/>Option B</label>
+                  <label for="sub_info"><input type="radio" name="sub" value="0" id="sub_info" />Option C</label>
+                  <label for="sub_condition"><input type="radio" name="sub" value="0" id="sub_condition" />Option D</label>
+                </div>
+
+               <!-- question 3 -->
+               <div class="mySlides fade">
+                  <div class="numbertext">3 / 5</div>
+                  <img src="res/img_mountains_wide.jpg" style="width:100%">
+                  <h2>Question 3</h2>
+                  <label for="cat_string"><input type="radio" name="con" value="0" id="cat_string" />Option A</label>
+                  <label for="cat_join"><input type="radio" name="con" value="25" id="cat_join" />Option B</label>
+                  <label for="cat_info"><input type="radio" name="con" value="0" id="cat_info" />Option C</label>
+                  <label for="cat_condition"><input type="radio" name="con" value="0" id="cat_condition" />Option D</label>
+               </div>
+               
+               <!-- question 4 -->
+               <div class="mySlides fade">
+                  <div class="numbertext">4 / 5</div>
+                  <img src="res/img_mountains_wide.jpg" style="width:100%">
+                  <h2>Question 4</h2>
+                  <label for="if_string"><input type="radio" name="ifstate" value="0" id="if_string" />Option A</label>
+                  <label for="if_join"><input type="radio" name="ifstate" value="0" id="if_join" />Option B</label>
+                  <label for="if_info"><input type="radio" name="ifstate" value="0" id="if_info" />Option C</label>
+                  <label for="if_condition"><input type="radio" name="ifstate"  value="25" id="if_condition" />Option D</label>
+                  <!-- <button type="submit" value="Submit">Submit</button> -->
+                </div>
+               <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+               <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </form>
+
+            <div class="mySlides fade">
+               <div class="numbertext">5 / 5</div>
+               <img src="res/img_mountains_wide.jpg" style="width:100%">
+               <h2>Results</h2>
+               <p>Your grade is: <span id="grade">__</span></p>
+               <p id="grade2"></p>
+             </div>
+         </div>
+          
+         </div>
+         <!-- close main div -->
+         <script src="script.js"></script>
+   </body>
+   </body>
+   <p id="grade2"></p>
+</html>
