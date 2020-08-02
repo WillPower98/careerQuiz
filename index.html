@@ -10,21 +10,20 @@
             <!-- open main div -->
             <div id="header">
                <!-- open header div -->
-               <h1>JavaScript Quiz</h1>
+               <h1>Career Quiz</h1>
             </div>
             <!-- close header div -->
             <div class="slideshow-container">
             <form id="form1">
 
                <!-- question 1 -->
-               <div class="mySlides fade">
+               <div class="mySlides fade" id="question1">
                   <div class="numbertext">1 / 5</div>
                   <img src="res/img_nature_wide.jpg" style="width:100%">
-                  <h2>Question 1</h2>
-                  <label for="var_string"><input type="radio" name="variable" value="0" id="var_string" />Option A</label>
-                  <label for="var_join"><input type="radio" name="variable" value="0" id="var_join" />Option B</label>
-                  <label for="var_info"><input type="radio" name="variable" value="25" id="var_info" />Option C</label>
-                  <label for="var_condition"><input type="radio" name="variable" value="0" id="var_condition"/>Option D</label>
+                  <h2>What is your preferred work location</h2>
+                  <label for="q1" onclick="getCareers()"><input type="radio" name="location" value="us"/>U.S.</label>
+                  <label for="q1" onclick="getCareers()"><input type="radio" name="location" value="int"/>International Assignment</label>
+                  <label for="q1" onclick="getCareers()"><input type="radio" name="location" value="both"/>Both</label>
                </div>
 
                <!-- question 2 -->
@@ -75,8 +74,8 @@
           
          </div>
          <!-- close main div -->
-         <script src="script.js"></script>
    </body>
    </body>
+   <script src="script.js"></script>
    <p id="grade2"></p>
 </html>

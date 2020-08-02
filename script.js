@@ -27,8 +27,41 @@ function showSlides(n) {
 }
 
 //calculating the result
+
+//getting career tracks based off of location preference.
+var tracks = []
+function getCareers(){
+        let fso = ["Consular Officers", "Economic Officers", "Management Officers", "Political Officers", "Public Diplomacy Officers"]
+        let fss = ["Medical and Health", "Information Technology", "Engineering", "International Programs and English Language", "Law Enforcement and Security"]
+        let cs = ["Foreign Affairs Officer", "Information Technology Management​", "Intelligence Series", "Public Affairs", "Language Specialist"]
+        
+        let pref_location = ""
+        let ele = document.getElementsByName('location');
+        for(i = 0; i < ele.length; i++) { 
+                if(ele[i].checked){
+                        pref_location = ele[i].value; 
+                }
+            }
+            
+        console.log(pref_location)
+
+        switch(pref_location){
+                case("us"):
+                        tracks = cs.concat(fss)
+                        break;
+                case("int"):
+                        tracks = fso.concat(fss)
+                        break;
+                case("both"):
+                        tracks = fso.concat(fss).concat(cs)
+                        break;
+                default:
+        }
+
+        console.log("Possible tracks are " + tracks.toString())
+}
+
 document.getElementById("form1").onsubmit=function() {
-        q1 = parseInt(document.querySelector('input[name = "variable"]:checked').value);
         q2 = parseInt(document.querySelector('input[name = "sub"]:checked').value);
         q3 = parseInt(document.querySelector('input[name = "con"]:checked').value);
         q4 = parseInt(document.querySelector('input[name = "ifstate"]:checked').value);
