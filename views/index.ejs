@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dept of State</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+  <img src="<%=question.image%>"style="width:100%">
+  <h2><%= question.title %></h2>
+
+  <form class="" action="/" method="post">
+    <%  question.choices.forEach((choice) => { %>
+      <label for="q1" onclick="getCareers()"><input type="radio" name="userChoice" value="<%=choice%>"><%=choice%></label>
+    <%  }) %>
+    <input type="hidden" name="questionTitle" value="<%=question.title%>"></input>
+    <button type="submit" name="button">Submit Answer</button>
+  </form>
+
+</body>
