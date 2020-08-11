@@ -1,0 +1,16 @@
+config:
+  target: 'http://localhost:3000/'
+  phases:
+    - duration: 30
+      arrivalRate: 10
+scenarios:
+  - flow:
+    - get:
+        url: 'http://localhost:3000/'
+
+    # - post:
+    #     url: 'http://localhost:3000/'
+    #     json:
+    #       userChoice: 'International'
+    #       questionTitle: 'Question One'
+    #       quizSessionId: 'VU Request'
