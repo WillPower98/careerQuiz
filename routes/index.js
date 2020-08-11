@@ -16,6 +16,34 @@ const q1 = {
   choices: ["Yes", "No", "That's classified!"]
 };
 
+const q2 = {
+  title: "What kind of professions are you interested in?",
+  image: "res/img_snow_wide.jpg",
+  choices: ["Engineering","Cybersecurity/Information Technology","Teaching/Education","Medicine",\
+           "International Studies","Language Studies","Language Studies","Law Enforcement",\
+           "Communications and Journalism","Finance","Logistics","Office Management",\
+           "Social Science/Statistics","Construction/Trade skills","Other/None"]
+};
+
+const q3 = {
+  title: "What are some of your skills?",
+  image: "res/img_snow_wide.jpg", 
+  choices: ["Organization & Management", "Ability to work under pressure", "Flexibility and adaptability", "Creativity and problem solving", \
+            "Ability to build consensus with opposing views", "Analytical thinker", "Interpersonal skills", "Proficiency in another language", \
+            "Computer programming", "Academic research", "Other/None"]
+};
+
+const q4 = {
+  title: "Which statements do you self identify with the most?",
+  image: "res/img_snow_wide.jpg",
+  choices: ["I am a strategic thinker", "I am good at persuading people", "I enjoy talking in front of large crowds",\
+           "I like to work on complex technical projects","I strive at making processes more effective and efficient",\
+           "I like to lead when working in team settings","I would enjoy analyzing large amounts of data and using statistical techniques",\
+           "I like working with my hands", "I would feel comfortable working in a warzone", "I am particularly interested in publishing and digital media"],
+  ranking: [[3,0,0],[2,0,2],[4,0,0],[1,0,0],[]
+  
+};
+
 let questions = [q0, q1]
 let qcounter = 0
 
