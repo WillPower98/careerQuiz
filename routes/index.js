@@ -1,7 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const { QuizSession } = require('./QuizSession.js');
 
-var career_points = {};
+let career_points = {};
 
 const q0 = {
   title: "What is your preferred work location?",
@@ -15,8 +16,8 @@ const q1 = {
   choices: ["Yes", "No", "That's classified!"]
 };
 
-var questions = [q0, q1]
-var qcounter = 0
+let questions = [q0, q1]
+let qcounter = 0
 
 function nextQuestion(){
   qcounter++;
@@ -37,7 +38,7 @@ function filterCareers(pref_location){
       let fss = ["Medical and Health", "Information Technology", "Engineering", "International Programs and English Language", "Law Enforcement and Security"]
       let cs = ["Foreign Affairs Officer", "Information Technology Management​", "Intelligence Series", "Public Affairs", "Language Specialist"]
 
-      
+
       //assigning career tracks based off of pref location
       let tracks = []
       switch(pref_location){
@@ -65,25 +66,55 @@ function filterCareers(pref_location){
       console.log(career_points)
 }
 
+/* IMPORTANT: DO NOT TOUCH. This is the runtime data structure used to store
+   the quiz progress of all users. */
+let quizSessions = new Map();
+
+
+
 /* The client with first access the get method. The post method will be used
 for subsequent interactions with the client. The post method checks the question
 title/name and the answer the uer provided. This can be used to update the
 career track rankings and to dynamically pass a question object to the client
 currently, only two question objects are defined, but we can add more very
 easily. */
-
 router.get("/", (req, res) => {
-  res.render('index', { title: 'career quiz', question: thisQuestion()});
+
+  const NewQuizSession = new QuizSession();
+
+  quizSessions.set(NewQuizSession.getQuizSessionId(), NewQuizSession);
+
+  console.log(quizSessions);
+
+  NewQuizSession.setCurrentQuestion(q0);
+
+
+
+  res.render('index', { title: 'career quiz', quizSession: NewQuizSession});
 });
 
 router.post("/", (req, res) => {
 
     const userAnswer = req.body.userChoice;
-    const questionTitle = req.body.questionTitle
+    const questionTitle = req.body.questionTitle;
+    const quizSessionId = req.body.quizSessionId;
     console.log("The title of the question was: " + questionTitle);
     console.log("The answer of the user was: " + userAnswer);
-    processQuestion(userAnswer, )
-    res.render('index', { title: 'career quiz', question: nextQuestion()});
+    console.log("The id of the quiz session is: " + quizSessionId);
+    console.log("Checking that quizSessionID is in map... ");
+
+    console.log(quizSessions.has(quizSessionId));
+
+    console.log(quizSessions);
+
+    ActiveQuizSession = quizSessions.get(quizSessionId);
+    console.log(ActiveQuizSession);
+
+    // processQuestion(userAnswer, )
+
+    ActiveQuizSession.setCurrentQuestion(q1);
+
+    res.render('index', { title: 'career quiz', quizSession: ActiveQuizSession});
 });
 
 module.exports = router;
