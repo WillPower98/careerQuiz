@@ -4,6 +4,41 @@ const { QuizSession } = require('./QuizSession.js');
 
 let career_points = {};
 
+
+/*
+Tonight:
+
+1.) Create mapping between career tracks and their abbreviations
+2.) Refactor Manuela's code
+3.) Add proper landing pape (i.e., Welcome to the State Department'
+                    Career Exploration Module)
+4.) Embed 90-sec video.
+5.) Generate report.
+
+Tomorrow:
+6.) Add database
+7.) Deploy to Heroku
+8.) Organize Project Directory
+
+CONS_O
+ECO_O
+MGMT_O
+POL_O
+PUB_DIP_O
+MED_HEL
+IT
+ENG
+INT_PRGM_ENG_LANG
+LAW_ENF_SEC
+FOR_AFF_O
+IT_MGMT
+INTEL_SER
+PUB_AFF
+LANG_SPLST
+*/
+
+
+
 const q0 = {
   title: "What is your preferred work location?",
   image: "res/img_nature_wide.jpg",
@@ -42,9 +77,9 @@ const q2 = {
 
 const q3 = {
   title: "What are some of your skills?",
-  image: "res/img_snow_wide.jpg", 
-  choices: ["Organization & Management", "Ability to work under pressure", "Flexibility and adaptability", "Creativity and problem solving", 
-            "Ability to build consensus with opposing views", "Analytical thinker", "Interpersonal skills", "Proficiency in another language", 
+  image: "res/img_snow_wide.jpg",
+  choices: ["Organization & Management", "Ability to work under pressure", "Flexibility and adaptability", "Creativity and problem solving",
+            "Ability to build consensus with opposing views", "Analytical thinker", "Interpersonal skills", "Proficiency in another language",
             "Computer programming", "Academic research", "Other/None"],
   fssRanking: [[0,0,0,0,0],[0,0,1,0,1],[0,0,1,1,1],[0,1,1,0,0],
               [0,0,0,0,0],[0,0,0,0,1],[0,0,0,1,0],[0,0,0,0,0],
@@ -77,37 +112,37 @@ const q4 = {
 
 // userAnswer = list of choices selected by the user
 function processQuestion(userAnswer, activeQuizSession){
-  
+
   let fso = ["Consular Officers", "Economic Officers", "Management Officers", "Political Officers", "Public Diplomacy Officers"];
   let fss = ["Medical and Health", "Information Technology", "Engineering", "International Programs and English Language", "Law Enforcement and Security"];
   let cs = ["Foreign Affairs Officer", "Information Technology Management", "Intelligence Series", "Public Affairs", "Language Specialist"];
-  
+
   let career_map = activeQuizSession.getCareerRankingMap();
-  
-  for(let i = 0; i < userAnswer.length(); i++) { 
-    let index = activeQuizSession.getCurrentQuestion().choices.indexOf(userAnswer[i]); 
-    for(let j = 0; j < activeQuizSession.getCurrentQuestion().fsoRanking[index].length; j++) { 
+
+  for(let i = 0; i < userAnswer.length(); i++) {
+    let index = activeQuizSession.getCurrentQuestion().choices.indexOf(userAnswer[i]);
+    for(let j = 0; j < activeQuizSession.getCurrentQuestion().fsoRanking[index].length; j++) {
       // get track names
-      let fssTrack = fss[j]; 
+      let fssTrack = fss[j];
       let fsoTrack = fso[j];
       let csTrack = cs[j];
-      
+
       let fssObj = career_map.get(fssTrack);
       let fsoObj = career_map.get(fsoTrack);
       let csObj = career_map.get(csTrack);
-      
+
       // update score
       fssObj.score = fssObj.score + activeQuizSession.getCurrentQuestion().fssRanking[index][j];
       fsoObj.score = fsoObj.score + activeQuizSession.getCurrentQuestion().fsoRanking[index][j];
       csObj.score = csObj.score + activeQuizSession.getCurrentQuestion().csRanking[index][j];
-      
+
       // update career track scores
       career_map.set(fssTrack, fssObj);
       career_map.set(fsoTrack, fsoObj);
       career_map.set(csTrack, csObj);
     }
   }
-  
+
   activeQuizSession.setCareerRankingMap(career_map);
 }
 
