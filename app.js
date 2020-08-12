@@ -4,6 +4,8 @@ const ejs = require("ejs");
 const _ = require('lodash');
 
 const indexRouter = require('./routes/index.js');
+const quizRouter = require('./routes/quiz.js');
+const videoRouter = require('./routes/video.js');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -11,6 +13,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 app.use('/', indexRouter);
+app.use('/', quizRouter);
+app.use('/', videoRouter);
 
 app.listen(3000, () => {
   console.log('Server has started on port 3000');
