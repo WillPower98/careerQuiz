@@ -10,7 +10,7 @@ const { v4: uuidv4 } = require('uuid');
 // get request to "/quiz", the 2D array is loaded into the career map of that
 // session. The conversion from array to map allows O(1) access to each
 // career track object. At the end of the quiz, the map is converted back into an
-// array for sorting. 
+// array for sorting.
 const CareerTracks = [
 
   ['CONS_OFF', {'title': 'Consular Officers', 'abbreviation ': 'CONS_OFF', 'category': 'FSO', 'score': 0} ],
@@ -31,7 +31,16 @@ const CareerTracks = [
 
 ]
 
-
+// To permit bidirectional navigation in the quiz, each quizSession needs
+// a stack to push pop choice objects
+class Stack {
+  constructor(){ this.items = []; }
+  push(elem) { this.items.push(elem); }
+  pop() { return this.length > 0 ? this.items.pop() : "Underflow"; }
+  peek() { return this.items[items.length - 1] }
+  isempty() { return this.items.length === 0; }
+  printStack() { this.items.map(elem => { console.log(elme) }); }
+}
 
 /*
 In order to permit quick communication between the server and multiple
@@ -44,6 +53,7 @@ class QuizSession {
   constructor() {
     this._sessionId =  uuidv4();
     this._careerRankingMap = new Map(CareerTracks);
+    this._answerStack = new Stack();
 
     this._currentQuestion = {};
   }
@@ -59,9 +69,14 @@ class QuizSession {
     return this._careerRankingMap;
   }
 
-  updateCareerRankingMap() {
-    this._careerRankingMap = newMap;
+  addNextUserAnswer(userAnswer) {
+    this._answerStack.push(userAnswer);
   }
+
+  removeLastUserAnswer() {
+    this._answerStack.pop();
+  }
+
 
   // setCareerRankingMap(newMap) {
   //   this._careerRankingMap = newMap;
