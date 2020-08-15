@@ -5,7 +5,7 @@ const _ = require('lodash');
 
 const indexRouter = require('./routes/index.js');
 const quizRouter = require('./routes/quiz.js');
-const videoRouter = require('./routes/video.js');
+const videoRouter = require('./routes/general.js');
 
 const app = express();
 app.set('view engine', 'ejs');

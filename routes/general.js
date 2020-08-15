@@ -5,23 +5,23 @@ const router = express.Router();
 // The endpoint takes a single parameter, a number that corresponds the
 // requested video.
 
-router.get("/video/number/:number", (req, res) => {
+router.get("/general/type/:type/number/:number", (req, res) => {
 
-  const VideoNumber = req.params.number;
+  const RequestedResourceType = req.params.type;
 
-  switch (VideoNumber) {
-    case "1":
+  switch (RequestedResourceType) {
+    case "video":
       res.render("video_1");
       break;
-    case "2":
-      res.render("video_2");
+    case "text_instructions":
+      res.render("interlude_1");
       break;
     default:
       console.log("Error: undefined resource requested")
       res.status(404).render("error.ejs");
 
   }
-  console.log("get request to video endpoint");
+  console.log("get request to general endpoint");
 
 });
 

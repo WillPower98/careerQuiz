@@ -12,6 +12,7 @@ const preferenceQuestions = [
 
   {
   id: 0,
+  section: "preferences",
   title: "What is your preferred work location?",
   image: "res/img_nature_wide.jpg",
   choices: [
@@ -25,6 +26,7 @@ const preferenceQuestions = [
 
 {
   id: 1,
+  section: "preferences",
   title: "What kind of professions are you interested in?",
   image: "res/img_snow_wide.jpg",
   choices: [
@@ -49,6 +51,7 @@ const preferenceQuestions = [
 
 {
   id: 2,
+  section: "preferences",
   title: "What are some of your skills?",
   image: "res/img_snow_wide.jpg",
   choices: [
@@ -71,6 +74,7 @@ const preferenceQuestions = [
 
 {
   id: 3,
+  section: "preferences",
   title: "Which statements do you self identify with the most?",
   image: "res/img_snow_wide.jpg",
   choices: [
@@ -92,6 +96,9 @@ const preferenceQuestions = [
 
 // scenario-based questions
 const q5 = {
+
+  id: 4,
+  section: "scenarios",
   title: `You are a Diplomat in a country with conservative social rules. An
   American dance group is coming into town. This is a commerciallly organized
   performance but the embassy is provididng some support that will get its
@@ -102,13 +109,14 @@ const q5 = {
   of action?`,
   image: "res/img_snow_wide.jpg",
   choices: [
-
     ["You tell the theatre director to cooporate because the embassy is a sponsor and has the right to do whatever it wants.",{'PUB_DIP_OFF':-1,'INT_PRGM_ENG_LANG':-1,'LANG_SPLST':-1}],
     ["You ask the director of the dance group if is possible to change or alter the costumes. ",{'PUB_DIP_OFF':1,'INT_PRGM_ENG_LANG':1,'LANG_SPLST':1}],
     ["You listen to both directors and negotiate a compromise that would allow to the show to go on.",{'PUB_DIP_OFF':2,'INT_PRGM_ENG_LANG':2,'LANG_SPLST':2}]
 
   ]
 };
+
+
 
 const q6 = {
   title: "Which statements do you self identify with the most?",
@@ -179,32 +187,51 @@ router.get("/quiz", (req, res) => {
   res.render('quiz', { title: 'career quiz', quizSession: NewQuizSession});
 });
 
+
+
+
+
 router.post("/quiz", (req, res) => {
 
     const userAnswer = req.body.userChoice;
     const questionTitle = req.body.questionTitle;
     const quizSessionId = req.body.quizSessionId;
     const questionId = parseInt(req.body.questionId);
+    const section = req.body.section;
+
     console.log("The title of the question was: " + questionTitle);
     console.log("The answer of the user was: " + userAnswer);
     console.log("The id of the quiz session is: " + quizSessionId);
     console.log("The id of the last question is: " + questionId);
-    console.log("Checking that quizSessionID is in map... ");
-
-    console.log(quizSessions.has(quizSessionId));
-
-    console.log(quizSessions);
+    console.log(`Checking that quizSessionID is in map... ${quizSessions.has(quizSessionId)}`);
+    console.log("The current section of this quiz is: " + section);
+    console.log("...");
+    // console.log(quizSessions);
 
     ActiveQuizSession = quizSessions.get(quizSessionId);
-    console.log(ActiveQuizSession);
+    // console.log(ActiveQuizSession);
 
-    // processQuestion(userAnswer, ActiveQuizSession)
 
     let currentQuestionId = questionId + 1;
     currentQuestion = preferenceQuestions[currentQuestionId];
-    ActiveQuizSession.setCurrentQuestion(currentQuestion);
 
-    res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+
+
+    if (section === "scenarios") {
+      ActiveQuizSession.setCurrentQuestion(q5);
+      res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+    }
+
+    console.log(preferenceQuestions.length);
+
+    if (currentQuestionId === preferenceQuestions.length) {
+      console.log("end of preference questions")
+      res.render('interlude_2', {quizSession: ActiveQuizSession});
+    } else {
+      ActiveQuizSession.setCurrentQuestion(currentQuestion);
+      res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+    }
+
 });
 
 module.exports = router;

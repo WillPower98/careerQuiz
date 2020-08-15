@@ -178,14 +178,14 @@ button {
               </div>
               <div class="row justify-content-center">
                 <%  quizSession._currentQuestion.choices.forEach((choice) => { %>
-                  <label for="q1" onclick="getCareers()"><input type="radio" name="userChoice" value="<%=choice%>"><%=choice%></label>
+                  <label for="q1" onclick="getCareers()"><input type="radio" name="userChoice" value="<%=choice[0]%>"><%=choice[0]%></label>
                 <%  }) %>
               </div>
               <div class="row justify-content-end">
                 <input type="hidden" name="quizSessionId" value="<%=quizSession._sessionId%>"></input>
                 <input type="hidden" name="questionTitle" value="<%=quizSession._currentQuestion.title%>"></input>
-                <input type="hidden" name="questionId" value="<%=quizSession._currentQuestion.id%>"></input>
-
+                <input type="hidden" name="questionId" value="<%=quizSession._currentQuestion.id%>"> </input>
+                <input type="hidden" name="section" value="<%=quizSession._currentQuestion.section%>"> </input>
                 <!-- <a href="/video/number/1" class="btn btn-lg btn-secondary">Start!</a>
                 <a class="btn btn-primary" href="#" role="button">Link</a> -->
 
