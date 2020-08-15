@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-// This endpoint is reponsible for serving multimedia (video) content.
-// The endpoint takes a single parameter, a number that corresponds the
-// requested video.
+// This endpoint is reponsible for handle all requests that are not for
+// quz questsions. The endpoint takes two parameters: a type (such as video)
+// and a number, to select the appropriate resource
 
 router.get("/general/type/:type/number/:number", (req, res) => {
 

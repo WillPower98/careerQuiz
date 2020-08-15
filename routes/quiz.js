@@ -6,8 +6,6 @@ const { QuizSession } = require('./QuizSession.js');
 
 
 
-
-
 const preferenceQuestions = [
 
   {
@@ -190,47 +188,67 @@ router.get("/quiz", (req, res) => {
 
 
 
+const logReqBody = (req) => {
+
+  const quizSessionId = req.body.quizSessionId
+
+  console.log("The title of the question was: " + req.body.questionTitle);
+  console.log("The answer of the user was: " + req.body.userChoice);
+  console.log("The id of the quiz session is: " + quizSessionId);
+  console.log("The id of the last question is: " + parseInt(req.body.questionId));
+  console.log(`Checking that quizSessionID is in map... ${quizSessions.has(quizSessionId)}`);
+  console.log("The current section of this quiz is: " + req.body.section);
+  console.log("...");
+
+}
+
+
+
+
+
+
 
 router.post("/quiz", (req, res) => {
 
-    const userAnswer = req.body.userChoice;
-    const questionTitle = req.body.questionTitle;
-    const quizSessionId = req.body.quizSessionId;
-    const questionId = parseInt(req.body.questionId);
-    const section = req.body.section;
+  // First extract all relevant info from the request body
+  const userAnswer = req.body.userChoice;
+  const questionTitle = req.body.questionTitle;
+  const quizSessionId = req.body.quizSessionId;
+  const previousQuestionId = parseInt(req.body.questionId);
+  const section = req.body.section;
 
-    console.log("The title of the question was: " + questionTitle);
-    console.log("The answer of the user was: " + userAnswer);
-    console.log("The id of the quiz session is: " + quizSessionId);
-    console.log("The id of the last question is: " + questionId);
-    console.log(`Checking that quizSessionID is in map... ${quizSessions.has(quizSessionId)}`);
-    console.log("The current section of this quiz is: " + section);
-    console.log("...");
-    // console.log(quizSessions);
-
-    ActiveQuizSession = quizSessions.get(quizSessionId);
-    // console.log(ActiveQuizSession);
+  logReqBody(req);
 
 
-    let currentQuestionId = questionId + 1;
-    currentQuestion = preferenceQuestions[currentQuestionId];
+  // Get the quizSession correspoinding to the quizSessionId
+  let ActiveQuizSession = quizSessions.get(quizSessionId);
 
+  // The quiz is logical segemented into three sections: preferences,
+  // scenarios, and cultural
+  if (section === "preferences") {
 
-
-    if (section === "scenarios") {
-      ActiveQuizSession.setCurrentQuestion(q5);
-      res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
-    }
-
-    console.log(preferenceQuestions.length);
+    const currentQuestionId = previousQuestionId + 1;
 
     if (currentQuestionId === preferenceQuestions.length) {
       console.log("end of preference questions")
       res.render('interlude_2', {quizSession: ActiveQuizSession});
     } else {
+
+      const currentQuestion = preferenceQuestions[currentQuestionId];
       ActiveQuizSession.setCurrentQuestion(currentQuestion);
       res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
     }
+
+  }
+
+
+  if (section === "scenarios") {
+    ActiveQuizSession.setCurrentQuestion(q5);
+    res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+  }
+
+
+
 
 });
 
