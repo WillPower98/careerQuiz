@@ -182,10 +182,15 @@ button {
                 <%  }) %>
               </div>
               <div class="row justify-content-end">
-                <input type="hidden" name="quizSessionId" value="<%=quizSession._sessionId%>">
+                <input type="hidden" name="quizSessionId" value="<%=quizSession._sessionId%>"></input>
                 <input type="hidden" name="questionTitle" value="<%=quizSession._currentQuestion.title%>"></input>
-                <button onclick="plusSlides(-1)" style="font-size: 20px;"><</button> 
-                <button type="submit" name="button" style="float:right; font-size: 20px;">></button>
+                <input type="hidden" name="questionId" value="<%=quizSession._currentQuestion.id%>"></input>
+
+                <!-- <a href="/video/number/1" class="btn btn-lg btn-secondary">Start!</a>
+                <a class="btn btn-primary" href="#" role="button">Link</a> -->
+
+                <button style="font-size: 20px;">Prev</button>
+                <button type="submit" name="button" style="float:right; font-size: 20px;">Next</button>
               </div>
             </div>
           </div>

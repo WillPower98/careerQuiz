@@ -16,9 +16,9 @@ app.use('/', indexRouter);
 app.use('/', quizRouter);
 app.use('/', videoRouter);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log('Server has started on port 3000');
-})
+});
 
 
 
