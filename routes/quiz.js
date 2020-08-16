@@ -231,7 +231,7 @@ const logReqBody = (req) => {
 
   const quizSessionId = req.body.quizSessionId
 
-  console.log("The title of the question was: " + req.body.questionTitle);
+  console.log("The title of the question was: " + req.body.checked);
   console.log("The answer of the user was: " + req.body.userChoice);
   console.log("The id of the quiz session is: " + quizSessionId);
   console.log("The id of the last question is: " + parseInt(req.body.questionId));
