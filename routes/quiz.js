@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { resolveNaptr } = require('dns');
 const { QuizSession } = require('../modules/QuizSession.js');
 const { preferenceQuestions, scenarioQuestions, trivaQuestions } = require('../data/quizQuestions.js');
 
@@ -7,23 +8,19 @@ const { preferenceQuestions, scenarioQuestions, trivaQuestions } = require('../d
 /* The career map is updated at the end of every quiz session by popping all of the elements in the answerStack */
 // input = career map and questions array
 
-function updateCareerMap(activeQuizSession, questions){
+function updateCareerMap(activeQuizSession){
 
-  let currentQuestionId = questions.length-1;
   let careerMap = activeQuizSession.getCareerMap();
 
-  while(!activeQuizSession.emptyAnswerStack() && currentQuestionId >=0) {
+  while(!activeQuizSession.emptyAnswerStack()) {
 
-    let choiceMap = new Map(questions[currentQuestionId].choices);
     // we get choice object that correspond to the user's answer
-    let userChoice = choiceMap.get(activeQuizSession.removeLastUserAnswer());
+    let userChoice = activeQuizSession.getLastUserAnswer();
 
     // for every career track in the choice object use abbreviation (key) to update score in career map
     Object.keys(userChoice).forEach(function(key,index) {
       careerMap.get(key).score = careerMap.get(key).score + userChoice[key];
     });
-
-    currentQuestionId--;
   }
 
   activeQuizSession.setCareerRankingMap(careerMap);
@@ -115,6 +112,10 @@ router.post("/quiz", (req, res) => {
     if (currentQuestionId === preferenceQuestions.length) {
       console.log("end of preference questions")
       res.render('interlude_2', {quizSession: ActiveQuizSession});
+    }
+    else if(currentQuestionId == preferenceQuestions.length + scenarioQuestions.length) {
+      console.log('end of questions');
+      res.render('results')
     } else {
 
       const currentQuestion = preferenceQuestions[currentQuestionId];
