@@ -56,7 +56,6 @@ const preferenceQuestions = [
   image: "res/img_snow_wide.jpg",
   buttontype: "checkbox",
   choices: [
-
     ["Organization & Management",{'CONS_OFF':-1,'MGMT_OFF':-1}],
     ["Ability to work under pressure",{'CONS_OFF':1,'ECO_OFF':1,'MGMT_OFF':1,'POL_OFF':1,'PUB_DIP_OFF':1,'ENG':1,'LAW_ENF_SEC':1,'FOR_AFF_OFF':1,'INTEL_SER':1,'PUB_AFF':1}],
     ["Flexibility and adaptability",{'CONS_OFF':1,'ECO_OFF':1,'MGMT_OFF':1,'POL_OFF':1,'PUB_DIP_OFF':1,'ENG':1,'INT_PRGM_ENG_LANG':1,'LAW_ENF_SEC':1,'FOR_AFF_OFF':1,'PUB_AFF':1}],
@@ -68,7 +67,6 @@ const preferenceQuestions = [
     ["Computer programming",{'ENG':1,'IT_MGMT':1}],
     ["Academic research",{'INT_PRGM_ENG_LANG':1,'FOR_AFF_OFF':1}],
     ["Other/None",{}]
-
  ]
 },
 
@@ -80,7 +78,6 @@ const preferenceQuestions = [
   image: "res/img_snow_wide.jpg",
   buttontype: "radio",
   choices: [
-
     ["I am a strategic thinker",{'CONS_OFF':1}],
     ["I am good at persuading people",{'ECO_OFF':1,'POL_OFF':1}],
     ["I enjoy talking in front of large crowds",{'PUB_DIP_OFF':1,'PUB_AFF':1}],
@@ -91,7 +88,6 @@ const preferenceQuestions = [
     ["I like working with my hands",{'ENG':1,'LAW_ENF_SEC':1}],
     ["I would feel comfortable working in a warzone",{'CONS_OFF':1,'ECO_OFF':1,'MGMT_OFF':1,'POL_OFF':1,'PUB_DIP_OFF':1,'MED_HEL':1,'IT':1,'ENG':1,'INT_PRGM_ENG_LANG':1,'LAW_ENF_SEC':1}],
     ["I am particularly interested in publishing and digital media",{'PUB_DIP_OFF':1,'PUB_AFF':1}]
-
   ]
 }
 ];
@@ -182,23 +178,19 @@ const culturalAdaptabilityQuestions = [
 /* The career map is updated at the end of every quiz session by popping all of the elements in the answerStack */
 // input = career map and questions array
 
-function updateCareerMap(activeQuizSession, questions){
+function updateCareerMap(activeQuizSession){
 
-  let currentQuestionId = questions.length-1;
   let careerMap = activeQuizSession.getCareerMap();
 
-  while(!activeQuizSession.emptyAnswerStack() && currentQuestionId >=0) {
+  while(!activeQuizSession.emptyAnswerStack()) {
 
-    let choiceMap = new Map(questions[currentQuestionId].choices);
     // we get choice object that correspond to the user's answer
-    let userChoice = choiceMap.get(activeQuizSession.removeLastUserAnswer());
+    let userChoice = activeQuizSession.getLastUserAnswer();
 
     // for every career track in the choice object use abbreviation (key) to update score in career map
     Object.keys(userChoice).forEach(function(key,index) {
       careerMap.get(key).score = careerMap.get(key).score + userChoice[key];
     });
-
-    currentQuestionId--;
   }
 
   activeQuizSession.setCareerRankingMap(careerMap);
