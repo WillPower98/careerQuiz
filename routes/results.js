@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { QuizSession } = require('./QuizSession.js');
+const { QuizSession } = require('../modules/QuizSession.js');
 
 router.get('/', function(req, res, next) {
     console.log(QuizSession.getCareerRecommendations());

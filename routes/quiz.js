@@ -42,8 +42,13 @@ const logReqBody = (req) => {
 
   const quizSessionId = req.body.quizSessionId
 
-  console.log("The title of the question was: " + req.body.checked);
+  console.log("The title of the question was: " + req.body.questionTitle);
   console.log("The answer of the user was: " + req.body.userChoice);
+  console.log("The type of the answer was: " + typeof(req.body.userChoice));
+
+  for (choice of req.body.userChoice) {
+    console.log(choice);
+  }
   console.log("The id of the quiz session is: " + quizSessionId);
   console.log("The id of the last question is: " + parseInt(req.body.questionId));
   console.log(`Checking that quizSessionID is in map... ${quizSessions.has(quizSessionId)}`);
@@ -154,9 +159,14 @@ router.post("/quiz", (req, res) => {
 
   }
 
-
-
-
 });
+
+// This method allows the user to go back and forth in the quiz
+router.delete("/quiz", (req, res) => {
+
+
+})
+
+
 
 module.exports = router;
