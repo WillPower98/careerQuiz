@@ -37,7 +37,8 @@ let quizSessions = new Map();
 
 
 
-// Helper function for debugging
+// This function does to things:  prints the properties in the http body and
+// extracts the choice update values and creates a map out of them. 
 const logReqBody = (req) => {
 
   const quizSessionId = req.body.quizSessionId
@@ -45,6 +46,16 @@ const logReqBody = (req) => {
   console.log("The title of the question was: " + req.body.questionTitle);
   console.log("The answer of the user was: " + req.body.userChoice);
   console.log("The type of the answer was: " + typeof(req.body.userChoice));
+
+  if (typeof(req.body.userChoice) === 'string') {
+    let updateValues= JSON.parse(req.body.userChoice);
+    console.log(updateValues);
+  } else {
+    for (choice of req.body.userChoice) {
+      console.log(JSON.parse(choice));
+      console.log(typeof(choice));
+    }
+  }
 
   console.log("The id of the quiz session is: " + quizSessionId);
   console.log("The id of the last question is: " + parseInt(req.body.questionId));
