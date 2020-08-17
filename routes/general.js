@@ -15,6 +15,8 @@ router.get("/general/type/:type/number/:number", (req, res) => {
       break;
     case "text_instructions":
       res.render("interlude_1");
+    case "results":
+      res.render("results")
       break;
     default:
       console.log("Error: undefined resource requested")
