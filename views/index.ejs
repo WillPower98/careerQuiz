@@ -6,16 +6,21 @@
             <h1 class="cover-heading">Welcome!</h1>
             <div class="row">
                <div style="text-align:left; width:49%" class="col-4">
-                  <p class="lead">This career exploration module will determine your potential
-                     for careers in the State Department by exposing you to real world scenarios! When
-                     you are ready, hit Start to begin.
+                  <p class="lead">
+                     This career exploration module will determine your potential for careers <br>
+                     in the State Department by exposing you to real world scenarios and testing <br>
+                     your cross-cultural knowledge! When you are ready, hit <strong>Start</strong> to begin!
                   </p>
                </div>
                <div class="col-8"></div>
             </div>
-            <p class="lead">
-               <a href="/general/type/video/number/1" class="btn btn-lg btn-secondary">Start!</a>
-            </p>
+
+            <form action="/general" method="post">
+              <input type="hidden" name="type" value="video"></input>
+              <input type="hidden" name="number" value="1"></input>
+              <button type="submit" name="button" class="btn btn-lg btn-secondary">Start</button>
+            </form>
+
          </main>
          <footer class="mastfoot mt-auto">
          </footer>

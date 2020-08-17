@@ -5,16 +5,43 @@ const router = express.Router();
 // quz questsions. The endpoint takes two parameters: a type (such as video)
 // and a number, to select the appropriate resource
 
-router.get("/general/type/:type/number/:number", (req, res) => {
+router.post("/general", (req, res) => {
 
-  const RequestedResourceType = req.params.type;
+  console.log(req.body.type);
+  console.log(req.body.id);
+  console.log(req.body.number);
+
+  const RequestedResourceType = req.body.type;
 
   switch (RequestedResourceType) {
     case "video":
-      res.render("video_1");
+      const VideoNumber = parseInt(req.body.number);
+
+      if (VideoNumber === 1) {
+        res.render("video_1");
+      }
+
+      if (VideoNumber === 2) {
+        res.render("video_2", { sessionId: req.body.id });
+      }
+
       break;
     case "text_instructions":
-      res.render("interlude_1");
+      const InterludeNumber = parseInt(req.body.number);
+
+      if (InterludeNumber ===  1) {
+        res.render("interlude_1");
+      }
+
+      if (InterludeNumber ===  2) {
+        res.render("interlude_2");
+      }
+
+      if (InterludeNumber ===  3) {
+        res.render("interlude_3", { sessionId: req.body.id });
+      }
+
+
       break;
     default:
       console.log("Error: undefined resource requested")

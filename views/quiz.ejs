@@ -20,12 +20,12 @@
                 <%  }) %>
               </div>
               <div class="row justify-content-end">
+                <input type="hidden" name="type" value="question"></input>
                 <input type="hidden" name="quizSessionId" value="<%=quizSession._sessionId%>"></input>
                 <input type="hidden" name="questionTitle" value="<%=quizSession._currentQuestion.title%>"></input>
                 <input type="hidden" name="questionId" value="<%=quizSession._currentQuestion.id%>"> </input>
                 <input type="hidden" name="section" value="<%=quizSession._currentQuestion.section%>"> </input>
-                <!-- <a href="/video/number/1" class="btn btn-lg btn-secondary">Start!</a>
-                <a class="btn btn-primary" href="#" role="button">Link</a> -->
+
 
                 <button style="font-size: 20px;">Prev</button>
                 <button type="submit" name="button" style="float:right; font-size: 20px;">Next</button>

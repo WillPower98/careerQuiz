@@ -11,19 +11,17 @@
          better recommendations at the end of the module. <br>
        </p>
 
-         <p class="lead">In the next section, you will be presented with <br>
-           realistic scenarios that you might face while working for the <br>
-           State Department. You'll have to think on your feet and be <br>
-           resourceful to address these tricky diplomatic challenges! <br>
-           When you are ready, click begin!.</p>
+         <p class="lead">To proceed to the nex sectin, click begin!.</p>
 
     </div>
 
-    <form action="/quiz" method="post">
-    <input type="hidden" name="quizSessionId" value="<%=quizSession._sessionId%>"></input>
-    <input type="hidden" name="section" value="scenarios"></input>
-    <button type="submit" name="button" style="float:left; font-size: 20px;">Begin!</button>
+    <form action="/general" method="post">
+      <input type="hidden" name="type" value="video"></input>
+      <input type="hidden" name="number" value="2"></input>
+      <input type="hidden" name="id" value="<%=quizSession._sessionId%>"></input>
+      <button type="submit" name="button" class="btn btn-lg btn-secondary">Start</button>
     </form>
+
 
   </main><!-- /.container -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
