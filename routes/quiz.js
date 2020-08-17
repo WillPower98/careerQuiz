@@ -97,87 +97,87 @@ const preferenceQuestions = [
 ];
 
 // scenario-based questions
-const q5 = {
+const scenarioQuestions = [
+  {
+    id: 4,
+    section: "scenarios",
+    title: `You are a Diplomat in a country with conservative social rules. An
+    American dance group is coming into town. This is a commerciallly organized
+    performance but the embassy is provididng some support that will get its
+    name on the program sponsor. There is a reception planned with 100 VIP guests
+    to be held at the Ambassadors after the performance. The local theatre director
+    then says the costumes aren't modest enough. Neither the theatre director nor
+    of the dance group will budge. What is the best and and worse course
+    of action?`,
+    image: "res/img_snow_wide.jpg",
+    buttontype: "radio",
+    choices: [
+      ["You tell the theatre director to cooporate because the embassy is a sponsor and has the right to do whatever it wants.",{'PUB_DIP_OFF':-1,'INT_PRGM_ENG_LANG':-1,'LANG_SPLST':-1}],
+      ["You ask the director of the dance group if is possible to change or alter the costumes. ",{'PUB_DIP_OFF':1,'INT_PRGM_ENG_LANG':1,'LANG_SPLST':1}],
+      ["You listen to both directors and negotiate a compromise that would allow to the show to go on.",{'PUB_DIP_OFF':2,'INT_PRGM_ENG_LANG':2,'LANG_SPLST':2}]
 
-  id: 4,
-  section: "scenarios",
-  title: `You are a Diplomat in a country with conservative social rules. An
-  American dance group is coming into town. This is a commerciallly organized
-  performance but the embassy is provididng some support that will get its
-  name on the program sponsor. There is a reception planned with 100 VIP guests
-  to be held at the Ambassadors after the performance. The local theatre director
-  then says the costumes aren't modest enough. Neither the theatre director nor
-  of the dance group will budge. What is the best and and worse course
-  of action?`,
-  image: "res/img_snow_wide.jpg",
-  buttontype: "radio",
-  choices: [
-    ["You tell the theatre director to cooporate because the embassy is a sponsor and has the right to do whatever it wants.",{'PUB_DIP_OFF':-1,'INT_PRGM_ENG_LANG':-1,'LANG_SPLST':-1}],
-    ["You ask the director of the dance group if is possible to change or alter the costumes. ",{'PUB_DIP_OFF':1,'INT_PRGM_ENG_LANG':1,'LANG_SPLST':1}],
-    ["You listen to both directors and negotiate a compromise that would allow to the show to go on.",{'PUB_DIP_OFF':2,'INT_PRGM_ENG_LANG':2,'LANG_SPLST':2}]
-
-  ]
-};
-
-const q6 = {
-  id: 5,
-  section: "scenarios",
-  title: `You are a Consular official and you recieve a call that 3 Peace Corps Volunteers have
-  been detained in a town about 200 miles from the embassy on charges of illegally spying on a
-  military base. You learn that the volunteers were hiking and taking pictures to send back home.
-  The local Authorities say they will let the volunteers go for a monetary compensation in the form of
-  a bribe and a couple bottles of wine. What do you do?`,
-  image: "res/img_snow_wide.jpg",
-  buttontype: "radio",
-  choices: [
-    ["You take the information and report to the security officer so they can begin arranging the release through official channels.",{'CONS_OFF':1,'LAW_ENF_SEC':1}],
-    ["You accept and offer money as compensation to have the volunteers released.",{'CONS_OFF':-1,'LAW_ENF_SEC':-1}],
-    ["You get the names of the volunteers, the information of where they are detained and you work with the authorities on releasing the volunteers. You explain that while you cannot offer a payment outside of what is allowed by the law, you can clarify the situation  to resolve the matter.",{'CONS_OFF':2,'LAW_ENF_SEC':2}]
-  ]
-};
-
-const q7 = {
-  id: 6,
-  section: "scenarios",
-  title: `As an adminsitrative official, your responsability is to see that all embassy confidential
-  materials are reduced so that they may be destroyed within 5 minutes in the event of an emergency.
-  The embassy is not currently meeting this requirement. Your boss tells headquarters back in Washington D.C.
-  that mission is completed when you know that in fact, it is not. What do you do?`,
-  image: "res/img_snow_wide.jpg",
-  buttontype: "radio",
-  choices: [
-    ["You say nothing since your boss has already deemed the task as complete.",{'MGMT_OFF':-1}],
-    ["You go over your boss and speak to their boss about the situation and explain why they are wrong.",{'MGMT_OFF':1}],
-    ["You schedule a meeting with your boss and discuss why you disagree with their assesment. You take the opportunity to present the evidence to back your claim and bring up a few solutions to meet the requirement.",{'MGMT_OFF':2}]
-  ]
-};
+    ]
+  },
+  {
+    id: 5,
+    section: "scenarios",
+    title: `You are a Consular official and you recieve a call that 3 Peace Corps Volunteers have
+    been detained in a town about 200 miles from the embassy on charges of illegally spying on a
+    military base. You learn that the volunteers were hiking and taking pictures to send back home.
+    The local Authorities say they will let the volunteers go for a monetary compensation in the form of
+    a bribe and a couple bottles of wine. What do you do?`,
+    image: "res/img_snow_wide.jpg",
+    buttontype: "radio",
+    choices: [
+      ["You take the information and report to the security officer so they can begin arranging the release through official channels.",{'CONS_OFF':1,'LAW_ENF_SEC':1}],
+      ["You accept and offer money as compensation to have the volunteers released.",{'CONS_OFF':-1,'LAW_ENF_SEC':-1}],
+      ["You get the names of the volunteers, the information of where they are detained and you work with the authorities on releasing the volunteers. You explain that while you cannot offer a payment outside of what is allowed by the law, you can clarify the situation  to resolve the matter.",{'CONS_OFF':2,'LAW_ENF_SEC':2}]
+    ]
+  },
+  {
+    id: 6,
+    section: "scenarios",
+    title: `As an adminsitrative official, your responsability is to see that all embassy confidential
+    materials are reduced so that they may be destroyed within 5 minutes in the event of an emergency.
+    The embassy is not currently meeting this requirement. Your boss tells headquarters back in Washington D.C.
+    that mission is completed when you know that in fact, it is not. What do you do?`,
+    image: "res/img_snow_wide.jpg",
+    buttontype: "radio",
+    choices: [
+      ["You say nothing since your boss has already deemed the task as complete.",{'MGMT_OFF':-1}],
+      ["You go over your boss and speak to their boss about the situation and explain why they are wrong.",{'MGMT_OFF':1}],
+      ["You schedule a meeting with your boss and discuss why you disagree with their assesment. You take the opportunity to present the evidence to back your claim and bring up a few solutions to meet the requirement.",{'MGMT_OFF':2}]
+    ]
+  }
+ ]
 
 //cultural adaptablity questions
-const q8 = {
-  id: 7,
-  section: "scenarios",
-  title: "You are in Amman, Jordan, and you are invited to go to the souk. Where will you be going?",
-  image: "res/img_snow_wide.jpg",
-  buttontype: "radio",
-  choices: [
-    ["Mosque",{}],
-    ["Market",{'CONS_OFF':1,'ECO_OFF':1,'MGMT_OFF':1,'POL_OFF':1,'PUB_DIP_OFF':1,'MED_HEL':1,'IT':1,'ENG':1,'INT_PRGM_ENG_LANG':1,'LAW_ENF_SEC':1}],
-    ["Park",{}],
-    ["Turkish bath",{}]
-  ]
-};
-
-const q9 = {
-  id: 8,
-  section: "scenarios",
-  title: "In Italy, mums and roses are the flavored flowers to take when invited to dinner. True or False?",
-  image: "res/img_snow_wide.jpg",
-  buttontype: "radio",
-  choices: [
-    ["True",{}],
-    ["False",{'CONS_OFF':1,'ECO_OFF':1,'MGMT_OFF':1,'POL_OFF':1,'PUB_DIP_OFF':1,'MED_HEL':1,'IT':1,'ENG':1,'INT_PRGM_ENG_LANG':1,'LAW_ENF_SEC':1}]
-  ]
-};
+const culturalAdaptabilityQuestions = [
+  {
+    id: 7,
+    section: "scenarios",
+    title: "You are in Amman, Jordan, and you are invited to go to the souk. Where will you be going?",
+    image: "res/img_snow_wide.jpg",
+    buttontype: "radio",
+    choices: [
+      ["Mosque",{}],
+      ["Market",{'CONS_OFF':1,'ECO_OFF':1,'MGMT_OFF':1,'POL_OFF':1,'PUB_DIP_OFF':1,'MED_HEL':1,'IT':1,'ENG':1,'INT_PRGM_ENG_LANG':1,'LAW_ENF_SEC':1}],
+      ["Park",{}],
+      ["Turkish bath",{}]
+    ]
+  },
+  {
+    id: 8,
+    section: "scenarios",
+    title: "In Italy, mums and roses are the flavored flowers to take when invited to dinner. True or False?",
+    image: "res/img_snow_wide.jpg",
+    buttontype: "radio",
+    choices: [
+      ["True",{}],
+      ["False",{'CONS_OFF':1,'ECO_OFF':1,'MGMT_OFF':1,'POL_OFF':1,'PUB_DIP_OFF':1,'MED_HEL':1,'IT':1,'ENG':1,'INT_PRGM_ENG_LANG':1,'LAW_ENF_SEC':1}]
+    ]
+  }
+]
 
 /* The career map is updated at the end of every quiz session by popping all of the elements in the answerStack */
 // input = career map and questions array
