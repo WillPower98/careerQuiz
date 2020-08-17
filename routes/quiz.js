@@ -46,9 +46,6 @@ const logReqBody = (req) => {
   console.log("The answer of the user was: " + req.body.userChoice);
   console.log("The type of the answer was: " + typeof(req.body.userChoice));
 
-  for (choice of req.body.userChoice) {
-    console.log(choice);
-  }
   console.log("The id of the quiz session is: " + quizSessionId);
   console.log("The id of the last question is: " + parseInt(req.body.questionId));
   console.log(`Checking that quizSessionID is in map... ${quizSessions.has(quizSessionId)}`);
