@@ -282,38 +282,10 @@ router.post("/quiz", (req, res) => {
   }
 
 
-  if (section === "scenarios") {
+//   if (section === "scenarios") {
 //     ActiveQuizSession.setCurrentQuestion(q5);
 //     res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
-    
-    const currentQuestionId = previousQuestionId + 1;
-
-    if (currentQuestionId === scenarioQuestions.length + preferenceQuestions.length) {
-      console.log("end of scenario questions")
-      res.render('interlude_2', {quizSession: ActiveQuizSession});
-    } else {
-
-      const currentQuestion = scenarioQuestions[currentQuestionId-preferenceQuestions.length];
-      ActiveQuizSession.setCurrentQuestion(currentQuestion);
-      res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
-    }
-  }
-  
-  if (section == "cultural adaptability") {
-    
-    const currentQuestionId = previousQuestionId + 1;
-
-    if (currentQuestionId === scenarioQuestions.length + preferenceQuestions.length + culturalAdaptabilityQuestions.length) {
-      console.log("end of cultural adaptability questions questions")
-      res.render('interlude_2', {quizSession: ActiveQuizSession});
-    } else {
-
-      const currentQuestion = culturalAdaptabilityQuestions[currentQuestionId-preferenceQuestions.length-scenarioQuestions.length];
-      ActiveQuizSession.setCurrentQuestion(currentQuestion);
-      res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
-    }
-  }
-
+//   }   
 
 
 
