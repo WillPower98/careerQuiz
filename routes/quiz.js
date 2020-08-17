@@ -151,7 +151,7 @@ const scenarioQuestions = [
 const culturalAdaptabilityQuestions = [
   {
     id: 7,
-    section: "scenarios",
+    section: "cultural adaptability",
     title: "You are in Amman, Jordan, and you are invited to go to the souk. Where will you be going?",
     image: "res/img_snow_wide.jpg",
     buttontype: "radio",
@@ -164,7 +164,7 @@ const culturalAdaptabilityQuestions = [
   },
   {
     id: 8,
-    section: "scenarios",
+    section: "cultural adaptability",
     title: "In Italy, mums and roses are the flavored flowers to take when invited to dinner. True or False?",
     image: "res/img_snow_wide.jpg",
     buttontype: "radio",
@@ -283,8 +283,35 @@ router.post("/quiz", (req, res) => {
 
 
   if (section === "scenarios") {
-    ActiveQuizSession.setCurrentQuestion(q5);
-    res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+//     ActiveQuizSession.setCurrentQuestion(q5);
+//     res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+    
+    const currentQuestionId = previousQuestionId + 1;
+
+    if (currentQuestionId === scenarioQuestions.length + preferenceQuestions.length) {
+      console.log("end of scenario questions")
+      res.render('interlude_2', {quizSession: ActiveQuizSession});
+    } else {
+
+      const currentQuestion = scenarioQuestions[currentQuestionId-preferenceQuestions.length];
+      ActiveQuizSession.setCurrentQuestion(currentQuestion);
+      res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+    }
+  }
+  
+  if (section == "cultural adaptability") {
+    
+    const currentQuestionId = previousQuestionId + 1;
+
+    if (currentQuestionId === scenarioQuestions.length + preferenceQuestions.length + culturalAdaptabilityQuestions.length) {
+      console.log("end of cultural adaptability questions questions")
+      res.render('interlude_2', {quizSession: ActiveQuizSession});
+    } else {
+
+      const currentQuestion = culturalAdaptabilityQuestions[currentQuestionId-preferenceQuestions.length-scenarioQuestions.length];
+      ActiveQuizSession.setCurrentQuestion(currentQuestion);
+      res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+    }
   }
 
 
