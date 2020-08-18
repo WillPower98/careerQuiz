@@ -184,7 +184,7 @@ router.post("/quiz", (req, res) => {
 
       if (currentQuestionId === scenarioQuestions.length) {
         console.log("end of scenarios questions")
-        res.redirect(`/preResults/sessionID/${quizSessionId}`);
+        res.redirect(`/results/sessionID/${quizSessionId}`);
       } else {
 
         const currentQuestion = scenarioQuestions[currentQuestionId];

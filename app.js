@@ -5,7 +5,6 @@ const ejs = require("ejs");
 const indexRouter = require('./routes/index.js');
 const quizRouter = require('./routes/quiz.js');
 const videoRouter = require('./routes/general.js');
-const preResultsRouter = require('./routes/preResults.js');
 const resultsRouter = require('./routes/results.js');
 
 const app = express();
@@ -16,7 +15,6 @@ app.use(express.static("public"));
 app.use('/', indexRouter);
 app.use('/', quizRouter);
 app.use('/', videoRouter);
-app.use('/', preResultsRouter);
 app.use('/', resultsRouter);
 
 app.listen(process.env.PORT || 3000, () => {
