@@ -18,13 +18,14 @@ router.get("/results/sessionId/:sessionId", (req, res) => {
 });
 
 
-router.post('/results/sessionId/:sessionId', function(req, res, next) {
+router.post('/results/', function(req, res, next) {
     
     // console.log(quizSessions.getCareerRecommendations());
-    // const email = req.body.email;
-    // const firstName = req.body.firstName;
-    // const lastName = req.body.lastName
-    // console.log(JSON.parse(req))
+    const email = req.body.email;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const quizSessionId = req.body.quizSessionId;
+    console.log(email, firstName, lastName, quizSessionId)
 
     res.render(
         'results', {
