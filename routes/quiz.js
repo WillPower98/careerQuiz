@@ -38,7 +38,7 @@ let quizSessions = new Map();
 
 
 // This function does to things:  prints the properties in the http body and
-// extracts the choice update values and creates a map out of them. 
+// extracts the choice update values and creates a map out of them.
 const logReqBody = (req) => {
 
   const quizSessionId = req.body.quizSessionId
@@ -101,14 +101,15 @@ router.post("/quiz", (req, res) => {
   const previousQuestionId = parseInt(req.body.questionId);
   const section = req.body.section;
 
-  // Log post request
-  logReqBody(req);
-
   // First check to see if the quizSessionId corresponds to an active quiz
   // session. If no, respond to the post request with an error page.
   if ( ! quizSessions.has(quizSessionId) ) {
-    res.render(error.ejs);
+    res.render('error');
   }
+
+  // Log post request
+  logReqBody(req);
+
 
   // Assuming the the quizSessionId corresponds to an active quiz session,
   // we can not process the post reqeust
@@ -171,6 +172,16 @@ router.post("/quiz", (req, res) => {
 
 // This method allows the user to go back and forth in the quiz
 router.delete("/quiz", (req, res) => {
+  // First check to see if the quizSessionId corresponds to an active quiz
+  // session. If no, respond to the post request with an error page.
+  const quizSessionId = req.body.quizSessionId;
+  if ( ! quizSessions.has(quizSessionId) ) {
+    res.render('error');
+  }
+
+  // Get the quizSession correspoinding to the quizSessionId
+  let ActiveQuizSession = quizSessions.get(quizSessionId);
+
 
 
 })

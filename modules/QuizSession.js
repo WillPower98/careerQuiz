@@ -21,12 +21,14 @@ complement the underlying stateless http protocol.
 */
 class QuizSession {
 
-  constructor() {
+  constructor(removeSelfMethod) {
     this._sessionId =  uuidv4();
     this._careerRankingMap = new Map(CareerTracks);
     this._answerStack = new Stack();
 
     this._currentQuestion = {};
+
+    this.removeSelf =  removeSelfMethod; 
   }
 
   // The _quizSessionId is created only through a call to the constructor.
