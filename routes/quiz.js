@@ -8,7 +8,9 @@ const {
   scenarioQuestions,
   trivaQuestions
 } = require('../data/quizQuestions.js');
+let quizSessions = require('../modules/quizSessionHandler').quizSessions;
 
+console.log(typeof(quizSessions));
 
 /* The career map is updated at the end of every quiz session by popping all of the elements in the answerStack */
 // Choice object: {abbreviation: property}
@@ -44,7 +46,7 @@ function updateCareerMap(activeQuizSession) {
 /* IMPORTANT: DO NOT TOUCH. These are critical runtime data structure */
 
 // This is the runtime data structure used to store the quiz progress of all users.
-let quizSessions = new Map();
+// let quizSessions = new Map();
 
 
 
