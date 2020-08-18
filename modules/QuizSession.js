@@ -50,7 +50,14 @@ class QuizSession {
     this._answerStack.pop();
   }
 
-
+  getLastUserAnswer() {
+    return this._answerStack.pop();
+  }
+  
+  emptyAnswerStack() {
+    return this._answerStack.isempty();
+  }
+  
   // setCareerRankingMap(newMap) {
   //   this._careerRankingMap = newMap;
   // }
