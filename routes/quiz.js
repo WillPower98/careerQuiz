@@ -162,6 +162,7 @@ router.post("/quiz", (req, res) => {
       if (currentQuestionId === scenarioQuestions.length) {
         console.log("end of scenarios questions")
         res.send("finished scenarioQuestions");
+        res.redirect("preResults");
       } else {
 
         const currentQuestion = scenarioQuestions[currentQuestionId];
@@ -181,6 +182,6 @@ router.delete("/quiz", (req, res) => {
 
 })
 
-
+}
 
 module.exports = router;

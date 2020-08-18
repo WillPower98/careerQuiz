@@ -43,8 +43,6 @@ router.post("/general", (req, res) => {
 
 
       break;
-    case "results":
-        res.render("results")
     default:
       console.log("Error: undefined resource requested")
       res.status(404).render("error.ejs");
