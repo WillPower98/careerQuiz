@@ -54,7 +54,7 @@ class QuizSession {
     return this._answerStack.pop();
   }
   
-  emptyAnswerStack() {
+  answerStackIsEmpty() {
     return this._answerStack.isempty();
   }
   
@@ -68,6 +68,21 @@ class QuizSession {
 
   setCurrentQuestion(newQuestion) {
     this._currentQuestion = newQuestion;
+  }
+  
+  updateCareerMapScores() {
+
+    let careerMap = getCareerRankingMap();
+    while (!answerStackIsEmpty()) {
+      let userChoice = getLastUserAnswer();
+      for (let i = 0; i < userChoice.length; i++) {
+        let currentUserChoice = userChoice[i];
+        Object.keys(currentUserChoice).forEach(function(key, index) {
+          careerMap.get(key).score = careerMap.get(key).score + currentUserChoice[key];
+        });
+      }
+    }
+    setCareerRankingMap(careerMap);
   }
 
   // This method returns the top three career recommendations by converting
