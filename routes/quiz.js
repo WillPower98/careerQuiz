@@ -15,29 +15,22 @@ console.log(typeof(quizSessions));
 /* The career map is updated at the end of every quiz session by popping all of the elements in the answerStack */
 // Choice object: {abbreviation: property}
 
-function updateCareerMap(activeQuizSession) {
+function updateCareerMap(ActiveQuizSession) {
 
-  let careerMap = activeQuizSession.getCareerMap();
+  let careerMap = ActiveQuizSession.getCareerMap();
 
-  while (!activeQuizSession.emptyAnswerStack()) {
+  while (!ActiveQuizSession.emptyAnswerStack()) {
 
-    let userChoice = activeQuizSession.getLastUserAnswer();
+    let userChoice = ActiveQuizSession.getLastUserAnswer();
 
-    if (!Array.isArray(userChoice)) {
-      Object.keys(userChoice).forEach(function(key, index) {
-        careerMap.get(key).score = careerMap.get(key).score + userChoice[key];
-      });
-    } else {
+     for (let i = 0; i < userChoice.length; i++) {
+       let currentUserChoice = userChoice[i];
+       Object.keys(currentUserChoice).forEach(function(key, index) {
+         careerMap.get(key).score = careerMap.get(key).score + currentUserChoice[key];
+       });
+     }
 
-      for (let i = 0; i < userChoice.length; i++) {
-        let currentUserChoice = userChoice[i];
-        Object.keys(currentUserChoice).forEach(function(key, index) {
-          careerMap.get(key).score = careerMap.get(key).score + currentUserChoice[key];
-        });
-      }
-    }
-
-    activeQuizSession.setCareerRankingMap(careerMap);
+    ActiveQuizSession.setCareerRankingMap(careerMap);
   };
 
 }
@@ -63,13 +56,25 @@ const logReqBody = (req) => {
   console.log("The answer of the user was: " + req.body.userChoice);
   console.log("The type of the answer was: " + typeof(req.body.userChoice));
 
+  let ActiveQuizSession = quizSessions.get(quizSessionId);
+  
   if (typeof(req.body.userChoice) === 'string') {
+    
     let updateValues = JSON.parse(req.body.userChoice);
-    console.log(updateValues);
+    let userChoiceArray = [];
+    userChoiceArray.push(updateValues);
+    console.log(userChoiceArray);
+    ActiveQuizSession.addNextUserAnswer(userChoiceArray);
+    
   } else if (typeof(req.body.userChoice) === 'object') {
+    
+    let userChoiceArray = [];
     for (choice of req.body.userChoice) {
       console.log(JSON.parse(choice));
       console.log(typeof(choice));
+      userChoiceArray.push(choice);
+      ActiveQuizSession.addNextUserAnswer(userChoiceArray);
+      
     }
   } else {
     console.log('user did not select choice on previous page.')
