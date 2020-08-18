@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const {
-  resolveNaptr
-} = require('dns');
-const {
   QuizSession
 } = require('../modules/QuizSession.js');
 const {
