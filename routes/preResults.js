@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const { QuizSession } = require('../modules/QuizSession.js');
 
-router.get("/preResults", (req, res) => {
-    const quizSession = new QuizSession();
+router.get("/preResults/sessionId/:sessionId", (req, res) => {
+    const quizSessionId = req.params.sessionId;
+    console.log(quizSessionId); 
     res.render('preResults', {
-        answers: quizSession._answerStack
+        answers: quizSessionId
     })
 })
 

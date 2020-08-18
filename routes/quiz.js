@@ -1,37 +1,47 @@
 const express = require('express');
 const router = express.Router();
-const { resolveNaptr } = require('dns');
-const { QuizSession } = require('../modules/QuizSession.js');
-const { preferenceQuestions, scenarioQuestions, trivaQuestions } = require('../data/quizQuestions.js');
+const {
+  resolveNaptr
+} = require('dns');
+const {
+  QuizSession
+} = require('../modules/QuizSession.js');
+const {
+  preferenceQuestions,
+  scenarioQuestions,
+  trivaQuestions
+} = require('../data/quizQuestions.js');
 
 
 /* The career map is updated at the end of every quiz session by popping all of the elements in the answerStack */
 // Choice object: {abbreviation: property}
 
-function updateCareerMap(activeQuizSession){
+function updateCareerMap(activeQuizSession) {
 
   let careerMap = activeQuizSession.getCareerMap();
 
-  while(!activeQuizSession.emptyAnswerStack()) {
+  while (!activeQuizSession.emptyAnswerStack()) {
 
     let userChoice = activeQuizSession.getLastUserAnswer();
 
     if (!Array.isArray(userChoice)) {
-      Object.keys(userChoice).forEach(function(key,index) {
+      Object.keys(userChoice).forEach(function(key, index) {
         careerMap.get(key).score = careerMap.get(key).score + userChoice[key];
       });
     } else {
 
       for (let i = 0; i < userChoice.length; i++) {
         let currentUserChoice = userChoice[i];
-        Object.keys(currentUserChoice).forEach(function(key,index) {
+        Object.keys(currentUserChoice).forEach(function(key, index) {
           careerMap.get(key).score = careerMap.get(key).score + currentUserChoice[key];
         });
       }
     }
 
-  activeQuizSession.setCareerRankingMap(careerMap);
-};
+    activeQuizSession.setCareerRankingMap(careerMap);
+  };
+
+}
 
 
 /* IMPORTANT: DO NOT TOUCH. These are critical runtime data structure */
@@ -55,13 +65,15 @@ const logReqBody = (req) => {
   console.log("The type of the answer was: " + typeof(req.body.userChoice));
 
   if (typeof(req.body.userChoice) === 'string') {
-    let updateValues= JSON.parse(req.body.userChoice);
+    let updateValues = JSON.parse(req.body.userChoice);
     console.log(updateValues);
-  } else {
+  } else if (typeof(req.body.userChoice) === 'object') {
     for (choice of req.body.userChoice) {
       console.log(JSON.parse(choice));
       console.log(typeof(choice));
     }
+  } else {
+    console.log('user did not select choice on previous page.')
   }
 
   console.log("The id of the quiz session is: " + quizSessionId);
@@ -90,7 +102,10 @@ router.get("/quiz", (req, res) => {
 
   NewQuizSession.setCurrentQuestion(preferenceQuestions[0]);
 
-  res.render('quiz', { title: 'career quiz', quizSession: NewQuizSession});
+  res.render('quiz', {
+    title: 'career quiz',
+    quizSession: NewQuizSession
+  });
 });
 
 
@@ -110,7 +125,7 @@ router.post("/quiz", (req, res) => {
 
   // First check to see if the quizSessionId corresponds to an active quiz
   // session. If no, respond to the post request with an error page.
-  if ( ! quizSessions.has(quizSessionId) ) {
+  if (!quizSessions.has(quizSessionId)) {
     res.render('error');
   }
 
@@ -132,16 +147,20 @@ router.post("/quiz", (req, res) => {
 
     if (currentQuestionId === preferenceQuestions.length) {
       console.log("end of preference questions")
-      res.render('interlude_2', {quizSession: ActiveQuizSession});
-    }
-    else if(currentQuestionId == preferenceQuestions.length + scenarioQuestions.length) {
+      res.render('interlude_2', {
+        quizSession: ActiveQuizSession
+      });
+    } else if (currentQuestionId == preferenceQuestions.length + scenarioQuestions.length) {
       console.log('end of questions');
       res.render('results')
     } else {
 
       const currentQuestion = preferenceQuestions[currentQuestionId];
       ActiveQuizSession.setCurrentQuestion(currentQuestion);
-      res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+      res.render('quiz', {
+        title: 'career quiz',
+        quizSession: ActiveQuizSession
+      });
     }
 
   }
@@ -151,11 +170,14 @@ router.post("/quiz", (req, res) => {
 
     let currentQuestionId;
 
-    if ( previousQuestionId === -1 ) {
+    if (previousQuestionId === -1) {
       currentQuestionId = 0;
       const currentQuestion = scenarioQuestions[currentQuestionId];
       ActiveQuizSession.setCurrentQuestion(currentQuestion);
-      res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+      res.render('quiz', {
+        title: 'career quiz',
+        quizSession: ActiveQuizSession
+      });
 
     } else {
 
@@ -163,12 +185,15 @@ router.post("/quiz", (req, res) => {
 
       if (currentQuestionId === scenarioQuestions.length) {
         console.log("end of scenarios questions")
-        res.send("finished scenarioQuestions");
+        res.redirect(`/preResults/sessionID/${quizSessionId}`);
       } else {
 
         const currentQuestion = scenarioQuestions[currentQuestionId];
         ActiveQuizSession.setCurrentQuestion(currentQuestion);
-        res.render('quiz', { title: 'career quiz', quizSession: ActiveQuizSession});
+        res.render('quiz', {
+          title: 'career quiz',
+          quizSession: ActiveQuizSession
+        });
       }
 
     }
@@ -182,7 +207,7 @@ router.delete("/quiz", (req, res) => {
   // First check to see if the quizSessionId corresponds to an active quiz
   // session. If no, respond to the post request with an error page.
   const quizSessionId = req.body.quizSessionId;
-  if ( ! quizSessions.has(quizSessionId) ) {
+  if (!quizSessions.has(quizSessionId)) {
     res.render('error');
   }
 
@@ -191,7 +216,7 @@ router.delete("/quiz", (req, res) => {
 
 
 
-})
+});
 
 
 
