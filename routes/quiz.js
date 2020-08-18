@@ -5,8 +5,7 @@ const { QuizSession } = require('../modules/QuizSession.js');
 const { preferenceQuestions, scenarioQuestions, trivaQuestions } = require('../data/quizQuestions.js');
 
 
-/* The career map is updated at the end of every quiz session by popping all of the elements in the answerStack */
-// input = career map and questions array
+// Choice object: {abbreviation: property}
 
 function updateCareerMap(activeQuizSession){
 
@@ -14,14 +13,21 @@ function updateCareerMap(activeQuizSession){
 
   while(!activeQuizSession.emptyAnswerStack()) {
 
-    // we get choice object that correspond to the user's answer
     let userChoice = activeQuizSession.getLastUserAnswer();
-
-    // for every career track in the choice object use abbreviation (key) to update score in career map
-    Object.keys(userChoice).forEach(function(key,index) {
-      careerMap.get(key).score = careerMap.get(key).score + userChoice[key];
-    });
-  }
+      
+    if (!Array.isArray(userChoice)) {
+      Object.keys(userChoice).forEach(function(key,index) {
+        careerMap.get(key).score = careerMap.get(key).score + userChoice[key];
+      });
+    } else {
+    
+      for (let i = 0; i < userChoice.length; i++) {
+        let currentUserChoice = userChoice[i];
+        Object.keys(currentUserChoice).forEach(function(key,index) {
+          careerMap.get(key).score = careerMap.get(key).score + currentUserChoice[key];
+        });
+      }
+    }
 
   activeQuizSession.setCareerRankingMap(careerMap);
 };
@@ -157,6 +163,7 @@ router.post("/quiz", (req, res) => {
       if (currentQuestionId === scenarioQuestions.length) {
         console.log("end of scenarios questions")
         res.send("finished scenarioQuestions");
+        res.redirect("preResults");
       } else {
 
         const currentQuestion = scenarioQuestions[currentQuestionId];
@@ -186,6 +193,6 @@ router.delete("/quiz", (req, res) => {
 
 })
 
-
+}
 
 module.exports = router;
