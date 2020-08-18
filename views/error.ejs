@@ -2,8 +2,13 @@
 
 <body>
 
-  <h1>error <%= error.status %></h1>
-  <p><%= error.stack %></p>
+  <h1> We're sorry. An unexpected error occured! :(</h1>
+  <p> Your progress has been lost. You will need to restart </p>
+
+  <form action="/" method="get">
+    <input type="hidden" name="errorNotice" value="restartFromError"></input>
+    <button type="submit" name="button" class="btn btn-lg btn-secondary">Restart</button>
+  </form>
 
 </body>
 
