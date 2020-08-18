@@ -154,9 +154,6 @@ router.post("/quiz", (req, res) => {
       res.render('interlude_2', {
         quizSession: ActiveQuizSession
       });
-    } else if (currentQuestionId == preferenceQuestions.length + scenarioQuestions.length) {
-      console.log('end of questions');
-      res.render('results')
     } else {
 
       const currentQuestion = preferenceQuestions[currentQuestionId];

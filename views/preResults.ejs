@@ -1,0 +1,58 @@
+<%- include("partials/header") %>
+<head>
+    <style>
+        input[type=email], select {
+            width: 20%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input[type=firstName], select {
+            width: 20%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=lastName], select {
+            width: 20%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <div>Thank you for your responses. Please enter information for more career tracks.</div>
+    <form method="POST" action="/results/sessionId/<%= quizSessionId %>">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+            <input type="firstName" class="form-control" placeholder="First name">
+            </div>
+            <div class="col">
+            <input type="lastName" class="form-control" placeholder="Last name">
+            </div>
+        </div>
+            <button type="submit" class="btn btn-primary">Submit Info</button>
+      </form>
+
+
+</body>
+
+</html>

@@ -9,8 +9,8 @@ router.get("/results/sessionId/:sessionId", (req, res) => {
                   id is present... ${quizSessions.has(quizSessionId)}`);
     console.log(quizSessionId);
 
-    res.render('results', {
-        answers: quizSessionId
+    res.render('preResults', {
+        quizSessionId: quizSessionId
     })
 
    
@@ -20,14 +20,16 @@ router.get("/results/sessionId/:sessionId", (req, res) => {
 
 router.post('/results/sessionId/:sessionId', function(req, res, next) {
     
-    console.log(QuizSession.getCareerRecommendations());
+    // console.log(quizSessions.getCareerRecommendations());
     // const email = req.body.email;
     // const firstName = req.body.firstName;
     // const lastName = req.body.lastName
-    console.log(JSON.parse(req))
+    // console.log(JSON.parse(req))
 
     res.render(
-        'results', {careerRecs: QuizSession.getCareerRecommendations()}
+        'results', {
+            // careerRecs: QuizSession.getCareerRecommendations()
+        }
     )
 });
 
