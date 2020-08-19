@@ -143,7 +143,7 @@ router.post("/quiz", (req, res) => {
 
   // Store user choices, if they submitted choices on previous page of quiz
   if (userChoice !== undefined) {
-    storeUserChoice(userChoice)
+    storeUserChoice(req)
   }
 
 
