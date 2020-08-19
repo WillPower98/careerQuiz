@@ -58,9 +58,9 @@ class QuizSession {
     return this._answerStack.isempty();
   }
 
-  // setCareerRankingMap(newMap) {
-  //   this._careerRankingMap = newMap;
-  // }
+  setCareerRankingMap(newMap) {
+    this._careerRankingMap = newMap;
+  }
 
   getCurrentQuestion() {
     return this._currentQuestion;
