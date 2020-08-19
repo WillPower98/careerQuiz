@@ -28,7 +28,7 @@ class QuizSession {
 
     this._currentQuestion = {};
 
-    this.removeSelf =  removeSelfMethod; 
+    this.removeSelf =  removeSelfMethod;
   }
 
   // The _quizSessionId is created only through a call to the constructor.
@@ -53,11 +53,11 @@ class QuizSession {
   getLastUserAnswer() {
     return this._answerStack.pop();
   }
-  
+
   answerStackIsEmpty() {
     return this._answerStack.isempty();
   }
-  
+
   // setCareerRankingMap(newMap) {
   //   this._careerRankingMap = newMap;
   // }
@@ -69,7 +69,7 @@ class QuizSession {
   setCurrentQuestion(newQuestion) {
     this._currentQuestion = newQuestion;
   }
-  
+
   updateCareerMapScores() {
 
     let careerMap = getCareerRankingMap();

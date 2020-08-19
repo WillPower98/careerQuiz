@@ -12,74 +12,79 @@ let quizSessions = require('../modules/quizSessionHandler').quizSessions;
 
 console.log(typeof(quizSessions));
 
-/* The career map is updated at the end of every quiz session by popping all of the elements in the answerStack */
-// Choice object: {abbreviation: property}
-
-function updateCareerMap(ActiveQuizSession) {
-
-  let careerMap = ActiveQuizSession.getCareerMap();
-
-  while (!ActiveQuizSession.emptyAnswerStack()) {
-
-    let userChoice = ActiveQuizSession.getLastUserAnswer();
-
-     for (let i = 0; i < userChoice.length; i++) {
-       let currentUserChoice = userChoice[i];
-       Object.keys(currentUserChoice).forEach(function(key, index) {
-         careerMap.get(key).score = careerMap.get(key).score + currentUserChoice[key];
-       });
-     }
-
-    ActiveQuizSession.setCareerRankingMap(careerMap);
-  };
-
-}
 
 
-/* IMPORTANT: DO NOT TOUCH. These are critical runtime data structure */
+// This function extracts user responses from the http body and stores them
+// in the appropriate quizSession object. User responses may correspond to
+// single or multiple selections. The two cases require slightly different
+// processing
+function storeUserChoice(req) {
 
-// This is the runtime data structure used to store the quiz progress of all users.
-// let quizSessions = new Map();
+  const quizSessionId = req.body.quizSessionId;
 
-
-
-
-
-
-// This function does to things:  prints the properties in the http body and
-// extracts the choice update values and creates a map out of them.
-const logReqBody = (req) => {
-
-  const quizSessionId = req.body.quizSessionId
-
-  console.log("The title of the question was: " + req.body.questionTitle);
-  console.log("The answer of the user was: " + req.body.userChoice);
-  console.log("The type of the answer was: " + typeof(req.body.userChoice));
+  // First check to see if the quizSessionId corresponds to an active quiz
+  // session. If no, respond to the post request with an error page.
+  if (!quizSessions.has(quizSessionId)) {
+    res.render('error');
+  }
 
   let ActiveQuizSession = quizSessions.get(quizSessionId);
-  
+
+
+  let userChoiceArray = [];
+
+  // In the case of a single selection, the userChoice is a string. This "string"
+  // is actually a stringified JSON object. So we parse it to create a living
+  // JSON object, push it to the stack of the appropriate quizSession, and return.
   if (typeof(req.body.userChoice) === 'string') {
-    
+
     let updateValues = JSON.parse(req.body.userChoice);
-    let userChoiceArray = [];
     userChoiceArray.push(updateValues);
     console.log(userChoiceArray);
     ActiveQuizSession.addNextUserAnswer(userChoiceArray);
-    
-  } else if (typeof(req.body.userChoice) === 'object') {
-    
-    let userChoiceArray = [];
+    return;
+  }
+
+
+  // In the case of multiple selections, the userChoice is an object. This
+  // "object" is an array of stringified JSON objects. So we iterate over that
+  // array, parse each string to create a living JSON object, push each one
+  // to the to the stack of the appropriate quizSession, and return.
+  if (typeof(req.body.userChoice) === 'object') {
+
     for (choice of req.body.userChoice) {
       console.log(JSON.parse(choice));
       console.log(typeof(choice));
       userChoiceArray.push(choice);
-      ActiveQuizSession.addNextUserAnswer(userChoiceArray);
-      
     }
-  } else {
-    console.log('user did not select choice on previous page.')
+
+    ActiveQuizSession.addNextUserAnswer(userChoiceArray);
+    return;
+
   }
 
+  // Control should not reach this point. The userChoice is a string or an
+  // array of strings. The log statement is meant for debugging purposes.
+
+  console.log(`Unexpected execution path in storeUserChoice()\n
+              userChoice is of type: ${typeof(userChoice)}\n
+              ID of quizSession is ${quizSessionId}`);
+}
+
+
+
+
+
+
+
+// Helper function that prints the properties in the http body
+const logReqBody = (req) => {
+
+  const quizSessionId = req.body.quizSessionId;
+
+  console.log("The title of the question was: " + req.body.questionTitle);
+  console.log("The answer of the user was: " + req.body.userChoice);
+  console.log("The type of the answer was: " + typeof(req.body.userChoice));
   console.log("The id of the quiz session is: " + quizSessionId);
   console.log("The id of the last question is: " + parseInt(req.body.questionId));
   console.log(`Checking that quizSessionID is in map... ${quizSessions.has(quizSessionId)}`);
@@ -121,7 +126,7 @@ router.get("/quiz", (req, res) => {
 router.post("/quiz", (req, res) => {
 
   // First extract all relevant info from the request body
-  const userAnswer = req.body.userChoice;
+  const userChoice = req.body.userChoice;
   const questionTitle = req.body.questionTitle;
   const quizSessionId = req.body.quizSessionId;
   const previousQuestionId = parseInt(req.body.questionId);
@@ -135,6 +140,11 @@ router.post("/quiz", (req, res) => {
 
   // Log post request
   logReqBody(req);
+
+  // Store user choices, if they submitted choices on previous page of quiz
+  if (userChoice !== undefined) {
+    storeUserChoice(userChoice)
+  }
 
 
   // Assuming the the quizSessionId corresponds to an active quiz session,
@@ -202,6 +212,9 @@ router.post("/quiz", (req, res) => {
   }
 
 });
+
+
+
 
 // This method allows the user to go back and forth in the quiz
 router.delete("/quiz", (req, res) => {
