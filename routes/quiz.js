@@ -100,7 +100,7 @@ currently, only two question objects are defined, but we can add more very
 easily. */
 router.get("/quiz", (req, res) => {
 
-  const NewQuizSession = new QuizSession();
+  const NewQuizSession = new QuizSession(quizSessions);
 
   quizSessions.set(NewQuizSession.getQuizSessionId(), NewQuizSession);
 

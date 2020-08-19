@@ -37,14 +37,14 @@ complement the underlying stateless http protocol.
 */
 class QuizSession {
 
-  constructor(removeSelfMethod) {
+  constructor(quizSessionsMap) {
     this._sessionId =  uuidv4();
     this._careerRankingMap = new Map(CareerTracks);
     this._answerStack = new Stack();
 
     this._currentQuestion = {};
 
-    this.removeSelf =  removeSelfMethod;
+    this.removeSelf = quizSessionsMap;
   }
 
   // The _quizSessionId is created only through a call to the constructor.
