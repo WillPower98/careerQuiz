@@ -26,8 +26,15 @@ router.post('/results/quizSessionId/:quizSessionId', function(req, res, next) {
 
     console.log(ActiveQuizSession.updateCareerMapScores());
 
-    console.log(ActiveQuizSession.getCareerRecommendations());
+    const recommendedTracks = [...ActiveQuizSession.getCareerRecommendations()]
 
+    console.log(recommendedTracks);
+
+    const recommendedTracksDescriptions = [];
+
+    for (track of recommendedTracks) {
+        recommendedTracksDescriptions.push(track[1].description);
+    }
     // console.log(ActiveQuizSession.getCareerRankingMap());
 
     const email = req.body.email;
@@ -38,7 +45,7 @@ router.post('/results/quizSessionId/:quizSessionId', function(req, res, next) {
 
     res.render(
         'results', {
-            // careerRecs: QuizSession.getCareerRecommendations()
+            careerRecs: recommendedTracksDescriptions
         }
     )
 });
