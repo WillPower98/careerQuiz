@@ -7,11 +7,27 @@ const { CareerTracks } = require('../data/careerTracks.js');
 class Stack {
   constructor(){ this.items = []; }
   push(elem) { this.items.push(elem); }
-  pop() { return this.length > 0 ? this.items.pop() : "Underflow"; }
+  pop() { return this.items.length > 0 ? this.items.pop() : "Underflow"; }
   peek() { return this.items[items.length - 1] }
   isempty() { return this.items.length === 0; }
   printStack() { this.items.map(elem => { console.log(elme) }); }
 }
+
+// Sorts a 2D array based on the value of the second element in each array.
+// Note that each array of the 2D array has two elements: the career track
+// and its score based on user input
+function sortDescendingOrder(inputArray) {
+
+  let tempArray = [];
+  tempArray = tempArray.concat(inputArray);
+  // tempArray.sort((a, b) => b[1] - a[1]);
+  tempArray.sort(function(a, b) {
+    return b[1].score - a[1].score;
+  });
+  return tempArray;
+}
+
+
 
 /*
 In order to permit quick communication between the server and multiple
@@ -72,17 +88,18 @@ class QuizSession {
 
   updateCareerMapScores() {
 
-    let careerMap = getCareerRankingMap();
-    while (!answerStackIsEmpty()) {
-      let userChoice = getLastUserAnswer();
-      for (let i = 0; i < userChoice.length; i++) {
-        let currentUserChoice = userChoice[i];
+    let careerMap = this._careerRankingMap;
+    while ( ! this._answerStack.isempty() ) {
+      let UserChoiceArray = this._answerStack.pop();
+
+      for (let i = 0; i < UserChoiceArray.length; i++) {
+        let currentUserChoice = JSON.parse(UserChoiceArray[i]);
         Object.keys(currentUserChoice).forEach(function(key, index) {
-          careerMap.get(key).score = careerMap.get(key).score + currentUserChoice[key];
+          careerMap.get(key).score += currentUserChoice[key];
         });
       }
     }
-    setCareerRankingMap(careerMap);
+    this.setCareerRankingMap(careerMap);
   }
 
   // This method returns the top three career recommendations by converting
@@ -91,26 +108,12 @@ class QuizSession {
   getCareerRecommendations() {
 
     // Use spread operator to expand make to 2D array
-    let careerRankingsArray = [...getCareerRankingMap()];
+    let careerRankingsArray = [...this.getCareerRankingMap()];
     careerRankingsArray = sortDescendingOrder(careerRankingsArray);
 
     const topThreeRecommendations = careerRankingsArray.slice(0, 3);
 
     return topThreeRecommendations;
-  }
-
-  // Sorts a 2D array based on the value of the second element in each array.
-  // Note that each array of the 2D array has two elements: the career track
-  // and its score based on user input
-  sortDescendingOrder(inputArray) {
-
-    let tempArray = [];
-    tempArray = tempArray.concat(inputArray);
-    // tempArray.sort((a, b) => b[1] - a[1]);
-    tempArray.sort(function(a, b) {
-      return b[1] - a[1];
-    });
-    return tempArray;
   }
 
 }

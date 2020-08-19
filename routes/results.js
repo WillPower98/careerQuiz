@@ -22,9 +22,14 @@ router.post('/results/quizSessionId/:quizSessionId', function(req, res, next) {
 
     const quizSessionId = req.params.quizSessionId;
     const ActiveQuizSession = quizSessions.get(quizSessionId);
+
+
     console.log(ActiveQuizSession.updateCareerMapScores());
-    
-    // console.log(quizSessions.getCareerRecommendations());
+
+    console.log(ActiveQuizSession.getCareerRecommendations());
+
+    // console.log(ActiveQuizSession.getCareerRankingMap());
+
     const email = req.body.email;
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;

@@ -34,12 +34,10 @@ function storeUserChoice(req) {
   let userChoiceArray = [];
 
   // In the case of a single selection, the userChoice is a string. This "string"
-  // is actually a stringified JSON object. So we parse it to create a living
-  // JSON object, push it to the stack of the appropriate quizSession, and return.
+  // is actually a stringified JSON object. Push it to the stack of the
+  // appropriate quizSession and return.
   if (typeof(req.body.userChoice) === 'string') {
-
-    let updateValues = JSON.parse(req.body.userChoice);
-    userChoiceArray.push(updateValues);
+    userChoiceArray.push(req.body.userChoice);
     console.log(userChoiceArray);
     ActiveQuizSession.addNextUserAnswer(userChoiceArray);
     return;
@@ -48,12 +46,11 @@ function storeUserChoice(req) {
 
   // In the case of multiple selections, the userChoice is an object. This
   // "object" is an array of stringified JSON objects. So we iterate over that
-  // array, parse each string to create a living JSON object, push each one
-  // to the to the stack of the appropriate quizSession, and return.
+  // array push each stringified object to the top of the stack of the
+  // appropriate quizSession. We then return.
   if (typeof(req.body.userChoice) === 'object') {
 
     for (choice of req.body.userChoice) {
-      console.log(JSON.parse(choice));
       console.log(typeof(choice));
       userChoiceArray.push(choice);
     }
