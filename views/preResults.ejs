@@ -38,21 +38,20 @@
 <body>
 
   <div>Thank you for your responses. Please enter information for more career tracks.</div>
-  <form method="POST" action="/results">
+  <form method="POST" action="/results/quizSessionId/<%=quizSessionId%>">
     <div class="form-row">
       <div class="form-group col-md-6">
-        <input name="email" type="email" class="form-control" id="inputEmail4" placeholder="Email">
+        <input name="email" type="email" class="form-control" id="inputEmail4" placeholder="Email"></input>
       </div>
     </div>
     <div class="form-row">
       <div class="col">
-        <input type="firstName" name="firstName" class="form-control" placeholder="First name">
+        <input type="firstName" name="firstName" class="form-control" placeholder="First name"></input>
       </div>
       <div class="col">
-        <input type="lastName" name="lastName" class="form-control" placeholder="Last name">
+        <input type="lastName" name="lastName" class="form-control" placeholder="Last name"></input>
       </div>
     </div>
-    <input type=“hidden” name=“quizSessionId” value=<%=quizSessionId%>></input>
     <button type="submit" class="btn btn-primary">Submit Info</button>
   </form>
 

@@ -28,8 +28,8 @@ function updateCareerMap(ActiveQuizSession) {
 }
 
 
-router.get("/results/sessionId/:sessionId", (req, res) => {
-    const quizSessionId = req.params.sessionId;
+router.get("/results/quizSessionId/:quizSessionId", (req, res) => {
+    const quizSessionId = req.params.quizSessionId;
     console.log(`Checking that endpoint has access to global map and that
                   id is present... ${quizSessions.has(quizSessionId)}`);
     console.log(quizSessionId);
@@ -43,13 +43,13 @@ router.get("/results/sessionId/:sessionId", (req, res) => {
 });
 
 
-router.post('/results/', function(req, res, next) {
+router.post('/results/quizSessionId/:quizSessionId', function(req, res, next) {
 
     // console.log(quizSessions.getCareerRecommendations());
     const email = req.body.email;
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
-    const quizSessionId = req.body.quizSessionId;
+    const quizSessionId = req.params.quizSessionId;
     console.log(email, firstName, lastName, quizSessionId)
 
     res.render(
