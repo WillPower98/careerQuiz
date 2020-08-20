@@ -51,12 +51,5 @@ router.post('/results/quizSessionId/:quizSessionId', function(req, res, next) {
     )
 });
 
-router.delete('/results/quizSessionId/:quizSessionId', (req, res) => {
-
-  console.log("delete quizSession");
-
-  res.render('finish');
-
-});
 
 module.exports =  router;
