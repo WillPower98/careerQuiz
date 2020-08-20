@@ -115,6 +115,10 @@ class QuizSession {
 
     return topThreeRecommendations;
   }
+  
+  removeSelf() {
+    this.__removeSelf.delete(this.getQuizSessionId())
+  }
 
 }
 
