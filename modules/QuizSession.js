@@ -117,7 +117,9 @@ class QuizSession {
   }
   
   removeSelf() {
-    this.__removeSelf.delete(this.getQuizSessionId())
+    let quizSessionId = this.getQuizSessionId();
+    this.removeSelf.delete(quizSessionId);
+    console.log(`Quiz session with id ${quizSessionId} was succesfully deleted... ${this.removeSelf.has(quizSessionId)}`);
   }
 
 }
