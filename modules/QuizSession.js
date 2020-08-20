@@ -121,7 +121,7 @@ class QuizSession {
     let quizSessionsMap = this.removeSelf;
     if(quizSessionsMap.has(quizSessionId)) {
       quizSessionsMap.delete(quizSessionId);
-      console.log(`Quiz session with id ${quizSessionId} was succesfully deleted... ${quizSessionsMap.has(quizSessionId)}`);
+      console.log(`Quiz session with id ${quizSessionId} was succesfully deleted... ${!quizSessionsMap.has(quizSessionId)}`);
     }
   }
 
