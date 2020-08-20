@@ -34,10 +34,13 @@
     box-sizing: border-box;
   }
 </style>
-
-<body>
-
-  <div>Thank you for your responses. Please enter information for more career tracks.</div>
+<body class="container" style="text-align: center";>
+  <div class="row">
+  </br>
+    <div>Thank you for your responses. Please enter your information for further opportunities.</div>
+  </br>
+  </div>
+  <div style="width:100%; display: inline-block;">
   <form method="POST" action="/results/quizSessionId/<%=quizSessionId%>">
     <div class="form-row">
       <div class="form-group col-md-6">
@@ -54,6 +57,7 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit Info</button>
   </form>
+  </div>
 
 
 </body>

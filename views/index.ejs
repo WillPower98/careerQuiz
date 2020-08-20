@@ -1,29 +1,30 @@
 <%- include("partials/header") %>
-
-   <body class="text-center">
-      <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-         <main role="main" class="inner cover">
-            <h1 class="cover-heading">Welcome!</h1>
-            <div class="row">
-               <div style="text-align:left; width:49%" class="col-4">
-                  <p class="lead">
-                     This career exploration module will determine your potential for careers <br>
-                     in the State Department by exposing you to real world scenarios and testing <br>
-                     your cross-cultural knowledge! When you are ready, hit <strong>Start</strong> to begin!
-                  </p>
+   <div style="display: flex; justify-content: center; align-items: center;">
+      <body class="text-center">
+         <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <main role="main" class="inner cover">
+               <h1 class="cover-heading">Welcome!</h1>
+               <div class="row">
+                  <div style="text-align:left; width:49%" class="col-4">
+                     <p class="lead" style="width: 700px">
+                        This career exploration module will determine your potential for careers <br>
+                        in the State Department by exposing you to real world scenarios and testing <br>
+                        your cross-cultural knowledge! When you are ready, hit <strong>Start</strong> to begin!
+                     </p>
+                  </div>
+                  <div class="col-8"></div>
                </div>
-               <div class="col-8"></div>
-            </div>
 
-            <form action="/general" method="post">
-              <input type="hidden" name="type" value="video"></input>
-              <input type="hidden" name="number" value="1"></input>
-              <button type="submit" name="button" class="btn btn-lg btn-secondary">Start</button>
-            </form>
+               <form action="/general" method="post">
+               <input type="hidden" name="type" value="video"></input>
+               <input type="hidden" name="number" value="1"></input>
+               <button type="submit" name="button" class="btn btn-lg btn-secondary">Start</button>
+               </form>
 
-         </main>
-         <footer class="mastfoot mt-auto">
-         </footer>
-      </div>
-   </body>
+            </main>
+            <footer class="mastfoot mt-auto">
+            </footer>
+         </div>
+      </body>
+   </div>
 </html>

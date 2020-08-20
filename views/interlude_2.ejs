@@ -2,28 +2,28 @@
 
 <body>
 
+  <div  style="width:100%; display: flex; justify-content: center; align-items: center">
+    <main role="main" class="container">
+      <div class="row">
+        <div class="starter-template">
+            <h1>Great! You've completed the sections on preferences.</h1>
+            <p class="lead">We will use these preferences to provide you with<br>
+              better recommendations at the end of the module. <br>
+            </p>
+            <p class="lead">To proceed to the nex sectin, click begin!.</p>
 
-  <main role="main" class="container">
-
-    <div class="starter-template">
-      <h1>Great! You've completed the sections on preferences.</h1>
-      <p class="lead">We will use these preferences to provide you with<br>
-         better recommendations at the end of the module. <br>
-       </p>
-
-         <p class="lead">To proceed to the nex sectin, click begin!.</p>
-
-    </div>
-
-    <form action="/general" method="post">
-      <input type="hidden" name="type" value="video"></input>
-      <input type="hidden" name="number" value="2"></input>
-      <input type="hidden" name="id" value="<%=quizSession._sessionId%>"></input>
-      <button type="submit" name="button" class="btn btn-lg btn-secondary">Start</button>
-    </form>
-
-
-  </main><!-- /.container -->
+        </div>
+      </div>
+      <div class="row">
+        <form action="/general" method="post">
+          <input type="hidden" name="type" value="video"></input>
+          <input type="hidden" name="number" value="2"></input>
+          <input type="hidden" name="id" value="<%=quizSession._sessionId%>"></input>
+          <button type="submit" name="button" class="btn btn-lg btn-secondary">Begin</button>
+        </form>
+      </div>
+    </main><!-- /.container -->
+  </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script>
     window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')

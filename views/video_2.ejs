@@ -1,29 +1,21 @@
 <%- include("partials/header") %>
-
-<body class="bg">
-  <div class="row"></div>
-  <div class="row">
-    <div class="col"></div>
-    </br>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/2W6LuP0vAUg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <div class="col"></div>
-  </div>
-  <div class="row"></div>
-  <div class="row">
-    <div class="col"></div>
-    <div class="col text-center">
+<body class="container">
+  <div style="width:100%; display: flex; justify-content: center; align-items: center">
+    <div class="row">
       </br>
-
-      <form action="/general" method="post">
-        <input type="hidden" name="type" value="text_instructions"></input>
-        <input type="hidden" name="number" value="3"></input>
-        <input type="hidden" name="id" value="<%=sessionId%>"></input>
-        <button type="submit" name="button" class="btn btn-lg btn-secondary">Continue</button>
-      </form>
-
+      <div class="col">
+        <iframe width="800" height="500" src="https://www.youtube.com/embed/2W6LuP0vAUg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
-    <div class="col"></div>
   </div>
+  <div style="width:100%; display: flex; justify-content: center; align-items: center">
+    <form action="/general" method="post">
+      <input type="hidden" name="type" value="text_instructions"></input>
+      <input type="hidden" name="number" value="3"></input>
+      <input type="hidden" name="id" value="<%=sessionId%>"></input>
+      <button type="submit" name="button" class="btn btn-lg btn-secondary">Continue</button>
+    </form>
+</div>
 </body>
 
 </html>

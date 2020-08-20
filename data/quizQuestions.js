@@ -4,7 +4,7 @@ const preferenceQuestions = [
     id: 0,
     section: "preferences",
     title: "What is your preferred work location?",
-    image: "res/img_nature_wide.jpg",
+    image: "res/worldMap.jpg",
     buttontype: "radio",
     choices: [
 
@@ -67,7 +67,7 @@ const preferenceQuestions = [
     id: 1,
     section: "preferences",
     title: "What kind of professions are you interested in?",
-    image: "res/img_snow_wide.jpg",
+    image: "res/profession.jpeg",
     buttontype: "checkbox",
     choices: [
 
@@ -131,7 +131,7 @@ const preferenceQuestions = [
     id: 2,
     section: "preferences",
     title: "What are some of your skills?",
-    image: "res/img_snow_wide.jpg",
+    image: "res/skills.png",
     buttontype: "checkbox",
     choices: [
 
@@ -214,7 +214,7 @@ const preferenceQuestions = [
     id: 3,
     section: "preferences",
     title: "Which statements do you self identify with the most?",
-    image: "res/img_snow_wide.jpg",
+    image: "res/identity.jpeg",
     buttontype: "radio",
     choices: [
 
@@ -295,7 +295,7 @@ const scenarioQuestions = [
   then says the costumes aren't modest enough. Neither the theatre director nor
   of the dance group will budge. What is the best and and worse course
   of action?`,
-    image: "res/img_snow_wide.jpg",
+    image: "res/theatre.jpeg",
     buttontype: "radio",
     choices: [
       ["You tell the theatre director to cooporate because the embassy is a sponsor and has the right to do whatever it wants.", {
@@ -326,7 +326,7 @@ const scenarioQuestions = [
   military base. You learn that the volunteers were hiking and taking pictures to send back home.
   The local Authorities say they will let the volunteers go for a monetary compensation in the form of
   a bribe and a couple bottles of wine. What do you do?`,
-    image: "res/img_snow_wide.jpg",
+    image: "res/hiking.jpg",
     buttontype: "radio",
     choices: [
       ["You take the information and report to the security officer so they can begin arranging the release through official channels.", {
@@ -352,7 +352,7 @@ const scenarioQuestions = [
   materials are reduced so that they may be destroyed within 5 minutes in the event of an emergency.
   The embassy is not currently meeting this requirement. Your boss tells headquarters back in Washington D.C.
   that mission is completed when you know that in fact, it is not. What do you do?`,
-    image: "res/img_snow_wide.jpg",
+    image: "res/classified.jpg",
     buttontype: "radio",
     choices: [
       ["You say nothing since your boss has already deemed the task as complete.", {
