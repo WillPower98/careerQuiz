@@ -12,7 +12,7 @@ router.post("/finish/quizSessionId/:quizSessionId", (req, res) => {
     let ActiveQuizSession = quizSessions.get(quizSessionId);
     console.log(`session to be deleted has id: ${quizSessionId}`);
 
-    ActiveQuizSession.removeSelf();
+    ActiveQuizSession.deleteQuizSession();
     
     res.render('finish');
 
