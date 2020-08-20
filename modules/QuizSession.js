@@ -116,10 +116,13 @@ class QuizSession {
     return topThreeRecommendations;
   }
   
-  removeSelf() {
+  deleteQuizSession() {
     let quizSessionId = this.getQuizSessionId();
-    this.removeSelf.delete(quizSessionId);
-    console.log(`Quiz session with id ${quizSessionId} was succesfully deleted... ${this.removeSelf.has(quizSessionId)}`);
+    let quizSessionsMap = this.removeSelf;
+    if(quizSessionsMap.has(quizSessionId)) {
+      quizSessionsMap.delete(quizSessionId);
+      console.log(`Quiz session with id ${quizSessionId} was succesfully deleted... ${quizSessionsMap.has(quizSessionId)}`);
+    }
   }
 
 }
