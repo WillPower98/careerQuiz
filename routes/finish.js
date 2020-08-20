@@ -9,9 +9,11 @@ router.post("/finish/quizSessionId/:quizSessionId", (req, res) => {
     console.log(`Checking that endpoint has access to global map and that
                   id is present... ${quizSessions.has(quizSessionId)}`);
 
-
+    let ActiveQuizSession = quizSessions.get(quizSessionId);
     console.log(`session to be deleted has id: ${quizSessionId}`);
 
+    ActiveQuizSession.removeSelf();
+    
     res.render('finish');
 
 });
