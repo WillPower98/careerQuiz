@@ -3,20 +3,20 @@
 <body>
 
   <div id="main" style="width:100%; display: flex; justify-content: center; align-items: center">
-  <main role="main" class="container">
+    <main role="main" class="container">
 
-    <div class="starter-template">
-      <h1>Instructions</h1>
-      <p class="lead">Hi! You are about to begin the career exploration module.<br>
-         In this section, we'll ask you some questions about your work <br>
-         preferences and career interests. When you are ready, click begin!.</p>
-    </div>
+      <div class="starter-template">
+        <h1>Instructions</h1>
+        <p class="lead">Hi! You are about to begin the career exploration module.<br>
+          In this section, we'll ask you some questions about your work <br>
+          preferences and career interests. When you are ready, click begin!.</p>
+      </div>
 
-    <form action="/quiz" method="get">
+      <form action="/quiz" method="get">
 
-    <input type="hidden" name="section" value="preferences"></input>
-    <button type="submit" name="button" style="float:left; font-size: 20px;">BEGIN</button>
-    </form>
+        <input type="hidden" name="section" value="preferences"></input>
+        <button type="submit" name="button" style="float:left; font-size: 20px;">BEGIN</button>
+      </form>
   </div>
   </main><!-- /.container -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -26,6 +26,6 @@
   <script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
 </body>
 
-</html>
-
 <%- include("partials/footer") %>
+
+</html>

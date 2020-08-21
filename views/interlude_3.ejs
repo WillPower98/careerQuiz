@@ -3,35 +3,32 @@
 <body>
 
   <div id="main" style="width:100%; display: flex; justify-content: center; align-items: center">
-  <main role="main" class="container">
+    <main role="main" class="container">
 
-    <div class="starter-template">
-      <h1>Welcome to the Section on Cultural Adaptablity</h1>
+        <h1>Welcome to the Section on Cultural Adaptablity</h1>
 
-         <p class="lead">In the next section, you will be presented with <br>
-           realistic scenarios that you might face while working for the <br>
-           State Department. You'll have to think on your feet and be <br>
-           resourceful to address these tricky diplomatic challenges! <br>
-           When you are ready, click begin!.</p>
+        <p class="lead">In the next section, you will be presented with <br>
+          realistic scenarios that you might face while working for the <br>
+          State Department. You'll have to think on your feet and be <br>
+          resourceful to address these tricky diplomatic challenges! <br>
+          When you are ready, click begin!.</p>
 
+
+      <form action="/quiz" method="post">
+        <input type="hidden" name="quizSessionId" value="<%=sessionId%>"></input>
+        <input type="hidden" name="section" value="scenarios"></input>
+        <input type="hidden" name="questionId" value="-1" </input>
+        <button type="submit" name="button" style="float:left; font-size: 20px;">Begin!</button>
+      </form>
+    </main>
     </div>
 
-    <form action="/quiz" method="post">
-    <input type="hidden" name="quizSessionId" value="<%=sessionId%>"></input>
-    <input type="hidden" name="section" value="scenarios"></input>
-    <input type="hidden" name="questionId" value="-1" </input>
-    <button type="submit" name="button" style="float:left; font-size: 20px;">Begin!</button>
-    </form>
-    </main>
-
-  </main>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script>
-    window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')
-  </script>
-  <script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script>
+      window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')
+    </script>
+    <script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
 </body>
+<%- include("partials/footer") %>
 
 </html>
-
-<%- include("partials/footer") %>
