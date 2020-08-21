@@ -3,7 +3,7 @@
 body {
   font-family: serif;
   margin: 2em;
-  background-image: url("https://cdn.wallpapersafari.com/12/96/yjJoiY.jpg");
+  background-image: url("../res/blue-background.jpg");
 
   /* Center and scale the image nicely */
   background-position: top;
@@ -33,6 +33,7 @@ img {
   max-width: 950px;
   border: 1px gray solid;
   margin: auto;
+  margin-bottom: 3%;
   padding: 10px;
   background-color: aliceblue;
   border-radius: 10px;

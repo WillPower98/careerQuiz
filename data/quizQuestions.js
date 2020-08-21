@@ -4,7 +4,7 @@ const preferenceQuestions = [
     id: 0,
     section: "preferences",
     title: "What is your preferred work location?",
-    image: "res/worldMap.jpg",
+    image: "res/img_mountains_wide.jpg",
     buttontype: "radio",
     choices: [
 
