@@ -37,3 +37,5 @@ assert(TestQuizSession._careerRankingMap.has("SEC_MGMT") === false);
 assert(TestQuizSession._careerRankingMap.has("") === false);
 // Test that there are fifteen career tracks
 assert(TestQuizSession.getCareerRankingMap().size === 15);
+// Test that the getCareerRecommendations method returns a string of length 3
+assert(TestQuizSession.getCareerRecomendations().length == 3);

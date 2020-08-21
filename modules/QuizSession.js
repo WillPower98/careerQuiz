@@ -122,6 +122,8 @@ class QuizSession {
     if(quizSessionsMap.has(quizSessionId)) {
       quizSessionsMap.delete(quizSessionId);
       console.log(`Quiz session with id ${quizSessionId} was succesfully deleted... ${!quizSessionsMap.has(quizSessionId)}`);
+    } else {
+      console.log(`Quiz session with id ${quizSessionId} doesn't exist in quizSessions map`);
     }
   }
 
