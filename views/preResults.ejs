@@ -34,29 +34,32 @@
     box-sizing: border-box;
   }
 </style>
-<body class="container" style="text-align: center";>
-  <div class="row">
-  </br>
-    <div>Thank you for your responses. Please enter your information for further opportunities.</div>
-  </br>
-  </div>
-  <div style="width:100%; display: inline-block;">
-  <form method="POST" action="/results/quizSessionId/<%=quizSessionId%>">
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <input name="email" type="email" class="form-control" id="inputEmail4" placeholder="Email"></input>
-      </div>
+<body>
+
+  <div id="main" class="container" style="text-align: center;">
+    <div class="row">
+    </br>
+      <div>Thank you for your responses. Please enter your information for further opportunities.</div>
+    </br>
     </div>
-    <div class="form-row">
-      <div class="col">
-        <input type="firstName" name="firstName" class="form-control" placeholder="First name"></input>
+    <div style="width:100%; display: inline-block;">
+    <form method="POST" action="/results/quizSessionId/<%=quizSessionId%>">
+      <div class="form-row">
+        <div class="col">
+          <input type="firstName" name="firstName" class="form-control" placeholder="First name"></input>
+        </div>
+        <div class="col">
+          <input type="lastName" name="lastName" class="form-control" placeholder="Last name"></input>
+        </div>
       </div>
-      <div class="col">
-        <input type="lastName" name="lastName" class="form-control" placeholder="Last name"></input>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input name="email" type="email" class="form-control" id="inputEmail4" placeholder="Email"></input>
+        </div>
       </div>
+      <button type="submit" class="btn btn-primary">Submit Info</button>
+    </form>
     </div>
-    <button type="submit" class="btn btn-primary">Submit Info</button>
-  </form>
   </div>
 
 

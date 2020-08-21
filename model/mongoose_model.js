@@ -36,22 +36,12 @@ const quizAttemptSchema = {
 const UserResult = mongoose.model("UserResult", quizAttemptSchema);
 
 
-// To save a new user result, just use this code:
-// const NewUserResult = new UserResult({
-//   firstName: "fasfdasfa",
-//   lastName: "fasdfdasfa",
-//   email: "fdasfda@fjdasfa.com"
-//   recommendedCareers: []
-// });
-//
-// NewUserResult.save();
-
 // sort by "field" descending and return to 10 latest results
-const getOtherUersRecommendations = () => {
+const queryOldAttempts = async () => {
 
   UserResult.find({}).sort('-date').limit(10).exec((err, results) => {
       if (!err) {
-          console.log(results);
+          // console.log(results);
           return results;
           // Add other peoples top recommendation to finish.ejs
       }
@@ -62,10 +52,8 @@ const getOtherUersRecommendations = () => {
       }
   });
 
-
-
 }
 
 
 
-module.exports = { UserResult, getOtherUersRecommendations };
+module.exports = { UserResult, queryOldAttempts };

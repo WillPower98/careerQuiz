@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 let quizSessions = require('../modules/quizSessionHandler').quizSessions;
-const getOtherUersRecommendations = require('../model/mongoose_model').getCareerRecommendations;
+const queryOldAttempts = require('../model/mongoose_model').queryOldAttempts;
 const UserResult = require('../model/mongoose_model').UserResult;
 
 
@@ -20,7 +20,7 @@ router.get("/results/quizSessionId/:quizSessionId", (req, res) => {
 });
 
 
-router.post('/results/quizSessionId/:quizSessionId', function(req, res, next) {
+router.post('/results/quizSessionId/:quizSessionId', (req, res) => {
 
     const quizSessionId = req.params.quizSessionId;
     const ActiveQuizSession = quizSessions.get(quizSessionId);
@@ -35,7 +35,10 @@ router.post('/results/quizSessionId/:quizSessionId', function(req, res, next) {
     const recommendedTracksDescriptions = [];
 
     for (track of RecommendedTracks) {
-        recommendedTracksDescriptions.push(track[1].description);
+        recommendedTracksDescriptions.push({
+            "title": track[1].title,
+            "description": track[1].description
+            });
     }
 
     // To save a new user result as record
@@ -52,25 +55,32 @@ router.post('/results/quizSessionId/:quizSessionId', function(req, res, next) {
 
     NewUserResult.save();
 
+    UserResult.find({}).sort('-date').limit(10).exec((err, results) => {
+        if (!err) {
+            console.log(results);
+            res.render(
+                'results', {
+                    careerRecommendations: recommendedTracksDescriptions,
+                    quizSessionId: quizSessionId,
+                    queriedRecords: results
+                }
+            )
 
-    res.render(
-        'results', {
-            careerRecs: recommendedTracksDescriptions,
-            quizSessionId: quizSessionId
         }
-    )
+        else {
+            console.log(err);
+            res.render(
+                'results', {
+                    careerRecommendations: recommendedTracksDescriptions,
+                    quizSessionId: quizSessionId,
+                    queriedRecords: [].push(err)
+                }
+            )
+        }
+    });
+
+
 });
-
-
-// To save a new user result, just use this code:
-// const NewUserResult = new UserResult({
-//   firstName: "fasfdasfa",
-//   lastName: "fasdfdasfa",
-//   email: "fdasfda@fjdasfa.com"
-//   recommendedCareers: []
-// });
-//
-// NewUserResult.save();
 
 
 module.exports = router;

@@ -9,7 +9,7 @@
 const CareerTracks = [
 
   ['CONS_OFF', {
-    'title': 'Consular Officers',
+    'title': 'Consular Officer',
     'abbreviation ': 'CONS_OFF',
     'category': 'FSO',
     'score': 0,
@@ -21,7 +21,7 @@ const CareerTracks = [
     in crisis.`
   }],
   ['ECO_OFF', {
-    'title': 'Economic Officers',
+    'title': 'Economic Officer',
     'abbreviation ': 'ECO_OFF',
     'category': 'FSO',
     'score': 0,
@@ -36,7 +36,7 @@ const CareerTracks = [
     and implementation.`
   }],
   ['MGMT_OFF', {
-    'title': 'Management Officers',
+    'title': 'Management Officer',
     'abbreviation ': 'MGMT_OFF',
     'category': 'FSO',
     'score': 0,
@@ -48,7 +48,7 @@ const CareerTracks = [
     advance to the level of ambassador, where such skills are highly valued.`
   }],
   ['POL_OFF', {
-    'title': 'Political Officers',
+    'title': 'Political Officer',
     'abbreviation ': 'POL_OFF',
     'category': 'FSO',
     'score': 0,
@@ -59,7 +59,7 @@ const CareerTracks = [
     career tracks in the ambassadorial ranks.`
   }],
   ['PUB_DIP_OFF', {
-    'title': 'Public Diplomacy Officers',
+    'title': 'Public Diplomacy Officer',
     'abbreviation ': 'PUB_DIP_OFF',
     'category': 'FSO',
     'score': 0,

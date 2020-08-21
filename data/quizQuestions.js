@@ -215,7 +215,7 @@ const preferenceQuestions = [
     section: "preferences",
     title: "Which statements do you self identify with the most?",
     image: "res/identity.jpeg",
-    buttontype: "radio",
+    buttontype: "checkbox",
     choices: [
 
       ["I am a strategic thinker", {

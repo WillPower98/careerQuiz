@@ -1,29 +1,40 @@
 <%- include("partials/header") %>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<head>
-  <style>
-    .card {
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      transition: 0.3s;
-      width: 100%;
-      background-color: aliceblue;
-  }
-  </style>
-</head>
-<body class="container" style="margin: auto; width: 70%; opacity: 1; text-align: center">
-<h1>All Done!</h1>
-  <%  careerRecs.forEach((description) => { %>
-    <p>
-      <div class="card"><%= description %></div>
-    </br>
-    </p>
-  <%  }) %>
 
-<!-- Button wrapped in delete request to results.js -->
+<body>
 
-<form method="post" action="/finish/quizSessionId/<%=quizSessionId%>">
-      <button type="submit" class="btn btn-primary">Finish</button>
-</form>
+  <div id="main" class="container" style="margin: auto; width: 80%; opacity: 1; text-align: center">
+    <h1 style="color: red;">All Done!</h1>
+    <h4>Check out the great career options below!</h4>
+      <%  careerRecommendations.forEach((recommendation) => { %>
+        <div class="card">
+          <h3 style="text-align: center; color: blue"><%= recommendation.title %></h3>
+          <p>
+            <%= recommendation.description %>
+          </br>
+          </p>
+        </div>
+      <%  }) %>
+
+
+      <div id="main" class="card" style="margin-top: 10%;">
+        <h3 style="text-align: center; color: red;">Check out your future colleagues!</h3>
+
+        <ol style="text-align: left;">
+          <%  queriedRecords.forEach((record) => { %>
+
+            <li> <%= record.firstName %> looks like a promising <%= record.recommendedCareers[0][1].title %>.</li>
+          <%  }) %>
+        </ol>
+
+      </div>
+
+    <!-- Button wrapped in delete request to results.js -->
+
+    <form method="post" action="/finish/quizSessionId/<%=quizSessionId%>">
+          <button type="submit" class="btn btn-primary">Finish</button>
+    </form>
+  </div>
+
 
 </body>
 
