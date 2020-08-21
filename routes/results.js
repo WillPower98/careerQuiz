@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 let quizSessions = require('../modules/quizSessionHandler').quizSessions;
+const getOtherUersRecommendations = require('../model/mongoose_model').getCareerRecommendations;
+const UserResult = require('../model/mongoose_model').UserResult;
 
 
 router.get("/results/quizSessionId/:quizSessionId", (req, res) => {
@@ -26,22 +28,30 @@ router.post('/results/quizSessionId/:quizSessionId', function(req, res, next) {
 
     console.log(ActiveQuizSession.updateCareerMapScores());
 
-    const recommendedTracks = [...ActiveQuizSession.getCareerRecommendations()]
+    const RecommendedTracks = [...ActiveQuizSession.getCareerRecommendations()]
 
-    console.log(recommendedTracks);
+    console.log(RecommendedTracks);
 
     const recommendedTracksDescriptions = [];
 
-    for (track of recommendedTracks) {
+    for (track of RecommendedTracks) {
         recommendedTracksDescriptions.push(track[1].description);
     }
-    // console.log(ActiveQuizSession.getCareerRankingMap());
 
-    const email = req.body.email;
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
+    // To save a new user result as record
+    const NewUserResult = new UserResult({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      date: new Date().toLocaleDateString(),
+      recommendedCareers: RecommendedTracks
+    });
+
     //const quizSessionId = req.params.quizSessionId;
-    console.log(email, firstName, lastName, quizSessionId)
+    console.log(NewUserResult);
+
+    NewUserResult.save();
+
 
     res.render(
         'results', {
@@ -52,4 +62,15 @@ router.post('/results/quizSessionId/:quizSessionId', function(req, res, next) {
 });
 
 
-module.exports =  router;
+// To save a new user result, just use this code:
+// const NewUserResult = new UserResult({
+//   firstName: "fasfdasfa",
+//   lastName: "fasdfdasfa",
+//   email: "fdasfda@fjdasfa.com"
+//   recommendedCareers: []
+// });
+//
+// NewUserResult.save();
+
+
+module.exports = router;
